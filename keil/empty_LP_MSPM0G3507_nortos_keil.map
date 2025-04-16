@@ -1,0 +1,496 @@
+Component: Arm Compiler for Embedded 6.21 Tool: armlink [5ec1fa00]
+
+==============================================================================
+
+Section Cross References
+
+    startup_mspm0g350x_uvision.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_mspm0g350x_uvision.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_mspm0g350x_uvision.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_mspm0g350x_uvision.o(RESET) refers to startup_mspm0g350x_uvision.o(STACK) for __initial_sp
+    startup_mspm0g350x_uvision.o(RESET) refers to startup_mspm0g350x_uvision.o(.text) for Reset_Handler
+    startup_mspm0g350x_uvision.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_mspm0g350x_uvision.o(.text) refers to __main.o(!!!main) for __main
+    startup_mspm0g350x_uvision.o(.text) refers to startup_mspm0g350x_uvision.o(HEAP) for Heap_Mem
+    startup_mspm0g350x_uvision.o(.text) refers to startup_mspm0g350x_uvision.o(STACK) for Stack_Mem
+    main.o(.text.main) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_init) for SYSCFG_DL_init
+    main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
+    ti_msp_dl_config.o(.text.SYSCFG_DL_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_initPower) for SYSCFG_DL_initPower
+    ti_msp_dl_config.o(.text.SYSCFG_DL_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_GPIO_init) for SYSCFG_DL_GPIO_init
+    ti_msp_dl_config.o(.text.SYSCFG_DL_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_SYSCTL_init) for SYSCFG_DL_SYSCTL_init
+    ti_msp_dl_config.o(.ARM.exidx.text.SYSCFG_DL_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_init) for [Anonymous Symbol]
+    ti_msp_dl_config.o(.text.SYSCFG_DL_initPower) refers to dl_common.o(.text.DL_Common_delayCycles) for DL_Common_delayCycles
+    ti_msp_dl_config.o(.ARM.exidx.text.SYSCFG_DL_initPower) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_initPower) for [Anonymous Symbol]
+    ti_msp_dl_config.o(.ARM.exidx.text.SYSCFG_DL_GPIO_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_GPIO_init) for [Anonymous Symbol]
+    ti_msp_dl_config.o(.ARM.exidx.text.SYSCFG_DL_SYSCTL_init) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_SYSCTL_init) for [Anonymous Symbol]
+    empty.o(.text.main) refers to ti_msp_dl_config.o(.text.SYSCFG_DL_init) for SYSCFG_DL_init
+    empty.o(.ARM.exidx.text.main) refers to empty.o(.text.main) for [Anonymous Symbol]
+    dl_adc12.o(.ARM.exidx.text.DL_ADC12_setClockConfig) refers to dl_adc12.o(.text.DL_ADC12_setClockConfig) for [Anonymous Symbol]
+    dl_adc12.o(.ARM.exidx.text.DL_ADC12_getClockConfig) refers to dl_adc12.o(.text.DL_ADC12_getClockConfig) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_setKey) refers to dl_aes.o(.text.DL_AES_setKey) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_setKeyAligned) refers to dl_aes.o(.text.DL_AES_setKeyAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadDataIn) refers to dl_aes.o(.text.DL_AES_loadDataIn) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadDataInAligned) refers to dl_aes.o(.text.DL_AES_loadDataInAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_getDataOut) refers to dl_aes.o(.text.DL_AES_getDataOut) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_getDataOutAligned) refers to dl_aes.o(.text.DL_AES_getDataOutAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadXORDataIn) refers to dl_aes.o(.text.DL_AES_loadXORDataIn) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadXORDataInAligned) refers to dl_aes.o(.text.DL_AES_loadXORDataInAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadXORDataInWithoutTrigger) refers to dl_aes.o(.text.DL_AES_loadXORDataInWithoutTrigger) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_loadXORDataInWithoutTriggerAligned) refers to dl_aes.o(.text.DL_AES_loadXORDataInWithoutTriggerAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_xorData) refers to dl_aes.o(.text.DL_AES_xorData) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_xorDataAligned) refers to dl_aes.o(.text.DL_AES_xorDataAligned) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_saveConfiguration) refers to dl_aes.o(.text.DL_AES_saveConfiguration) for [Anonymous Symbol]
+    dl_aes.o(.ARM.exidx.text.DL_AES_restoreConfiguration) refers to dl_aes.o(.text.DL_AES_restoreConfiguration) for [Anonymous Symbol]
+    dl_common.o(.ARM.exidx.text.DL_Common_delayCycles) refers to dl_common.o(.text.DL_Common_delayCycles) for [Anonymous Symbol]
+    dl_crc.o(.ARM.exidx.text.DL_CRC_calculateBlock32) refers to dl_crc.o(.text.DL_CRC_calculateBlock32) for [Anonymous Symbol]
+    dl_crc.o(.ARM.exidx.text.DL_CRC_calculateMemoryRange32) refers to dl_crc.o(.text.DL_CRC_calculateMemoryRange32) for [Anonymous Symbol]
+    dl_crc.o(.ARM.exidx.text.DL_CRC_calculateBlock16) refers to dl_crc.o(.text.DL_CRC_calculateBlock16) for [Anonymous Symbol]
+    dl_crc.o(.ARM.exidx.text.DL_CRC_calculateMemoryRange16) refers to dl_crc.o(.text.DL_CRC_calculateMemoryRange16) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_init) refers to dl_dac12.o(.text.DL_DAC12_init) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_outputBlocking8) refers to dl_dac12.o(.text.DL_DAC12_outputBlocking8) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_outputBlocking12) refers to dl_dac12.o(.text.DL_DAC12_outputBlocking12) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_fillFIFO8) refers to dl_dac12.o(.text.DL_DAC12_fillFIFO8) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_fillFIFO12) refers to dl_dac12.o(.text.DL_DAC12_fillFIFO12) for [Anonymous Symbol]
+    dl_dac12.o(.ARM.exidx.text.DL_DAC12_performSelfCalibrationBlocking) refers to dl_dac12.o(.text.DL_DAC12_performSelfCalibrationBlocking) for [Anonymous Symbol]
+    dl_dma.o(.ARM.exidx.text.DL_DMA_initChannel) refers to dl_dma.o(.text.DL_DMA_initChannel) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_eraseMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_eraseMemoryFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_eraseMemoryFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseMemoryFromRAM) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.ramfunc) refers to dl_flashctl.o(.ramfunc) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_massErase) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) for DL_FlashCTL_eraseDataBank
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_massErase) refers to dl_flashctl.o(.text.DL_FlashCTL_massErase) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_unprotectMainMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectMainMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_protectNonMainMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_protectNonMainMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) refers to aeabi_sdivfast.o(.text) for __aeabi_uidivmod
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_eraseDataBank) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_massEraseFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.text.DL_FlashCTL_massEraseFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) for DL_FlashCTL_eraseDataBankFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_massEraseFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_massEraseFromRAM) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) refers to aeabi_sdivfast.o(.text) for __aeabi_uidivmod
+    dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_eraseDataBankFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_massEraseMultiBank) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_flashctl.o(.text.DL_FlashCTL_massEraseMultiBank) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) for DL_FlashCTL_eraseDataBank
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_massEraseMultiBank) refers to dl_flashctl.o(.text.DL_FlashCTL_massEraseMultiBank) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_factoryReset) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBank) for DL_FlashCTL_eraseDataBank
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_factoryReset) refers to dl_flashctl.o(.text.DL_FlashCTL_factoryReset) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_unprotectNonMainMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectNonMainMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_factoryResetFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.text.DL_FlashCTL_factoryResetFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_eraseDataBankFromRAM) for DL_FlashCTL_eraseDataBankFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_factoryResetFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_factoryResetFromRAM) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_factoryResetMultiBank) refers to dl_flashctl.o(.text.DL_FlashCTL_massEraseMultiBank) for DL_FlashCTL_massEraseMultiBank
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_factoryResetMultiBank) refers to dl_flashctl.o(.text.DL_FlashCTL_factoryResetMultiBank) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory8) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory8) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM8) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory16) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory16) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM16) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory32) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory32) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM32) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory64) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory64) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM64) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory8WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory8WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM8WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory16WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory16WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM16WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory32WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory32WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM32WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory8WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory8WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM8WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM8WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory16WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory16WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM16WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM16WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory32WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory32WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM32WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM32WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemory64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemory64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryBlocking64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) refers to aeabi_sdivfast.o(.text) for __aeabi_uidivmod
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_unprotectSector) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryBlocking64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryBlocking) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryBlocking) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_programMemoryFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_programMemoryFromRAM) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_unprotectDataMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectDataMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_protectMainMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_protectMainMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_unprotectAllMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_unprotectAllMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_protectAllMemory) refers to dl_flashctl.o(.text.DL_FlashCTL_protectAllMemory) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_protectSector) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_flashctl.o(.text.DL_FlashCTL_protectSector) refers to aeabi_sdivfast.o(.text) for __aeabi_uidivmod
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_protectSector) refers to dl_flashctl.o(.text.DL_FlashCTL_protectSector) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify8) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify8) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify16) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify16) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify32) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify32) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify64) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify64) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM8) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM16) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM32) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM64) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM8WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM16WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM32WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64WithECCGenerated) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM8WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM8WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM16WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM16WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM32WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM32WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64WithECCManual) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerifyFromRAM64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerifyFromRAM64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify8WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify8WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify16WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify16WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify32WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify32WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify64WithECCGenerated) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify64WithECCGenerated) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify8WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify8WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify16WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify16WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify32WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify32WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_readVerify64WithECCManual) refers to dl_flashctl.o(.text.DL_FlashCTL_readVerify64WithECCManual) for [Anonymous Symbol]
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_blankVerify) refers to dl_flashctl.o(.text.DL_FlashCTL_blankVerify) for [Anonymous Symbol]
+    dl_flashctl.o(.text.DL_FlashCTL_blankVerifyFromRAM) refers to dl_flashctl.o(.ramfunc) for DL_FlashCTL_executeCommandFromRAM
+    dl_flashctl.o(.ARM.exidx.text.DL_FlashCTL_blankVerifyFromRAM) refers to dl_flashctl.o(.text.DL_FlashCTL_blankVerifyFromRAM) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_setClockConfig) refers to dl_i2c.o(.text.DL_I2C_setClockConfig) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_getClockConfig) refers to dl_i2c.o(.text.DL_I2C_getClockConfig) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_fillControllerTXFIFO) refers to dl_i2c.o(.text.DL_I2C_fillControllerTXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_flushControllerTXFIFO) refers to dl_i2c.o(.text.DL_I2C_flushControllerTXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_flushControllerRXFIFO) refers to dl_i2c.o(.text.DL_I2C_flushControllerRXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_fillTargetTXFIFO) refers to dl_i2c.o(.text.DL_I2C_fillTargetTXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_flushTargetTXFIFO) refers to dl_i2c.o(.text.DL_I2C_flushTargetTXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_flushTargetRXFIFO) refers to dl_i2c.o(.text.DL_I2C_flushTargetRXFIFO) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_transmitTargetDataBlocking) refers to dl_i2c.o(.text.DL_I2C_transmitTargetDataBlocking) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_transmitTargetDataCheck) refers to dl_i2c.o(.text.DL_I2C_transmitTargetDataCheck) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_receiveTargetDataBlocking) refers to dl_i2c.o(.text.DL_I2C_receiveTargetDataBlocking) for [Anonymous Symbol]
+    dl_i2c.o(.ARM.exidx.text.DL_I2C_receiveTargetDataCheck) refers to dl_i2c.o(.text.DL_I2C_receiveTargetDataCheck) for [Anonymous Symbol]
+    dl_mathacl.o(.ARM.exidx.text.DL_MathACL_configOperation) refers to dl_mathacl.o(.text.DL_MathACL_configOperation) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_isReady) refers to dl_mcan.o(.text.DL_MCAN_isReady) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_setClockConfig) refers to dl_mcan.o(.text.DL_MCAN_setClockConfig) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getClockConfig) refers to dl_mcan.o(.text.DL_MCAN_getClockConfig) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_isInReset) refers to dl_mcan.o(.text.DL_MCAN_isInReset) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_isFDOpEnable) refers to dl_mcan.o(.text.DL_MCAN_isFDOpEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_isMemInitDone) refers to dl_mcan.o(.text.DL_MCAN_isMemInitDone) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_setOpMode) refers to dl_mcan.o(.text.DL_MCAN_setOpMode) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getOpMode) refers to dl_mcan.o(.text.DL_MCAN_getOpMode) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_init) refers to dl_mcan.o(.text.DL_MCAN_init) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_config) refers to dl_mcan.o(.text.DL_MCAN_config) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccConfig) refers to dl_mcan.o(.text.DL_MCAN_eccConfig) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_setBitTime) refers to dl_mcan.o(.text.DL_MCAN_setBitTime) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_msgRAMConfig) refers to dl_mcan.o(.text.DL_MCAN_msgRAMConfig) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_setExtIDAndMask) refers to dl_mcan.o(.text.DL_MCAN_setExtIDAndMask) for [Anonymous Symbol]
+    dl_mcan.o(.text.DL_MCAN_writeMsgRam) refers to dl_mcan.o(.rodata.cst32) for [Anonymous Symbol]
+    dl_mcan.o(.text.DL_MCAN_writeMsgRam) refers to dl_mcan.o(.rodata..L__const.DL_MCAN_getDataSize.dataSize) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_writeMsgRam) refers to dl_mcan.o(.text.DL_MCAN_writeMsgRam) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_TXBufAddReq) refers to dl_mcan.o(.text.DL_MCAN_TXBufAddReq) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getNewDataStatus) refers to dl_mcan.o(.text.DL_MCAN_getNewDataStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_clearNewDataStatus) refers to dl_mcan.o(.text.DL_MCAN_clearNewDataStatus) for [Anonymous Symbol]
+    dl_mcan.o(.text.DL_MCAN_readMsgRam) refers to dl_mcan.o(.rodata.cst32) for [Anonymous Symbol]
+    dl_mcan.o(.text.DL_MCAN_readMsgRam) refers to dl_mcan.o(.rodata..L__const.DL_MCAN_getDataSize.dataSize) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_readMsgRam) refers to dl_mcan.o(.text.DL_MCAN_readMsgRam) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_readTxEventFIFO) refers to dl_mcan.o(.text.DL_MCAN_readTxEventFIFO) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_addStdMsgIDFilter) refers to dl_mcan.o(.text.DL_MCAN_addStdMsgIDFilter) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_addExtMsgIDFilter) refers to dl_mcan.o(.text.DL_MCAN_addExtMsgIDFilter) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_lpbkModeEnable) refers to dl_mcan.o(.text.DL_MCAN_lpbkModeEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getErrCounters) refers to dl_mcan.o(.text.DL_MCAN_getErrCounters) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getProtocolStatus) refers to dl_mcan.o(.text.DL_MCAN_getProtocolStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_enableIntr) refers to dl_mcan.o(.text.DL_MCAN_enableIntr) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_selectIntrLine) refers to dl_mcan.o(.text.DL_MCAN_selectIntrLine) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getIntrLineSelectStatus) refers to dl_mcan.o(.text.DL_MCAN_getIntrLineSelectStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_enableIntrLine) refers to dl_mcan.o(.text.DL_MCAN_enableIntrLine) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getIntrStatus) refers to dl_mcan.o(.text.DL_MCAN_getIntrStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_clearIntrStatus) refers to dl_mcan.o(.text.DL_MCAN_clearIntrStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getHighPriorityMsgStatus) refers to dl_mcan.o(.text.DL_MCAN_getHighPriorityMsgStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getRxFIFOStatus) refers to dl_mcan.o(.text.DL_MCAN_getRxFIFOStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_writeRxFIFOAck) refers to dl_mcan.o(.text.DL_MCAN_writeRxFIFOAck) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxFIFOQueStatus) refers to dl_mcan.o(.text.DL_MCAN_getTxFIFOQueStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxBufReqPend) refers to dl_mcan.o(.text.DL_MCAN_getTxBufReqPend) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_txBufCancellationReq) refers to dl_mcan.o(.text.DL_MCAN_txBufCancellationReq) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxBufTransmissionStatus) refers to dl_mcan.o(.text.DL_MCAN_getTxBufTransmissionStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_txBufCancellationStatus) refers to dl_mcan.o(.text.DL_MCAN_txBufCancellationStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_TXBufTransIntrEnable) refers to dl_mcan.o(.text.DL_MCAN_TXBufTransIntrEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxBufCancellationIntrEnable) refers to dl_mcan.o(.text.DL_MCAN_getTxBufCancellationIntrEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxEventFIFOStatus) refers to dl_mcan.o(.text.DL_MCAN_getTxEventFIFOStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_addClockStopRequest) refers to dl_mcan.o(.text.DL_MCAN_addClockStopRequest) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_writeTxEventFIFOAck) refers to dl_mcan.o(.text.DL_MCAN_writeTxEventFIFOAck) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccForceError) refers to dl_mcan.o(.text.DL_MCAN_eccForceError) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccGetErrorStatus) refers to dl_mcan.o(.text.DL_MCAN_eccGetErrorStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccClearErrorStatus) refers to dl_mcan.o(.text.DL_MCAN_eccClearErrorStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccWriteEOI) refers to dl_mcan.o(.text.DL_MCAN_eccWriteEOI) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccEnableIntr) refers to dl_mcan.o(.text.DL_MCAN_eccEnableIntr) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccGetIntrStatus) refers to dl_mcan.o(.text.DL_MCAN_eccGetIntrStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccClearIntrStatus) refers to dl_mcan.o(.text.DL_MCAN_eccClearIntrStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSCounterConfig) refers to dl_mcan.o(.text.DL_MCAN_extTSCounterConfig) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSCounterEnable) refers to dl_mcan.o(.text.DL_MCAN_extTSCounterEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSEnableIntr) refers to dl_mcan.o(.text.DL_MCAN_extTSEnableIntr) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSWriteEOI) refers to dl_mcan.o(.text.DL_MCAN_extTSWriteEOI) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSGetUnservicedIntrCount) refers to dl_mcan.o(.text.DL_MCAN_extTSGetUnservicedIntrCount) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getRevisionId) refers to dl_mcan.o(.text.DL_MCAN_getRevisionId) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getClockStopAck) refers to dl_mcan.o(.text.DL_MCAN_getClockStopAck) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSSetRawStatus) refers to dl_mcan.o(.text.DL_MCAN_extTSSetRawStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSClearRawStatus) refers to dl_mcan.o(.text.DL_MCAN_extTSClearRawStatus) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getRxPinState) refers to dl_mcan.o(.text.DL_MCAN_getRxPinState) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_setTxPinState) refers to dl_mcan.o(.text.DL_MCAN_setTxPinState) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTxPinState) refers to dl_mcan.o(.text.DL_MCAN_getTxPinState) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTSCounterVal) refers to dl_mcan.o(.text.DL_MCAN_getTSCounterVal) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getClkStopAck) refers to dl_mcan.o(.text.DL_MCAN_getClkStopAck) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getBitTime) refers to dl_mcan.o(.text.DL_MCAN_getBitTime) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_resetTSCounter) refers to dl_mcan.o(.text.DL_MCAN_resetTSCounter) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getTOCounterVal) refers to dl_mcan.o(.text.DL_MCAN_getTOCounterVal) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccAggrGetRevisionId) refers to dl_mcan.o(.text.DL_MCAN_eccAggrGetRevisionId) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_eccWrapGetRevisionId) refers to dl_mcan.o(.text.DL_MCAN_eccWrapGetRevisionId) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_extTSIsIntrEnable) refers to dl_mcan.o(.text.DL_MCAN_extTSIsIntrEnable) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getEndianVal) refers to dl_mcan.o(.text.DL_MCAN_getEndianVal) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_getExtIDANDMask) refers to dl_mcan.o(.text.DL_MCAN_getExtIDANDMask) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_saveConfiguration) refers to dl_mcan.o(.text.DL_MCAN_saveConfiguration) for [Anonymous Symbol]
+    dl_mcan.o(.ARM.exidx.text.DL_MCAN_restoreConfiguration) refers to dl_mcan.o(.text.DL_MCAN_restoreConfiguration) for [Anonymous Symbol]
+    dl_opa.o(.ARM.exidx.text.DL_OPA_increaseGain) refers to dl_opa.o(.text.DL_OPA_increaseGain) for [Anonymous Symbol]
+    dl_opa.o(.ARM.exidx.text.DL_OPA_decreaseGain) refers to dl_opa.o(.text.DL_OPA_decreaseGain) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_initCalendar) refers to dl_rtc_common.o(.text.DL_RTC_Common_initCalendar) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_getCalendarTime) refers to dl_rtc_common.o(.text.DL_RTC_Common_getCalendarTime) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_setCalendarAlarm1) refers to dl_rtc_common.o(.text.DL_RTC_Common_setCalendarAlarm1) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_getCalendarAlarm1) refers to dl_rtc_common.o(.text.DL_RTC_Common_getCalendarAlarm1) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_enableCalendarAlarm1) refers to dl_rtc_common.o(.text.DL_RTC_Common_enableCalendarAlarm1) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_disableCalendarAlarm1) refers to dl_rtc_common.o(.text.DL_RTC_Common_disableCalendarAlarm1) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_setCalendarAlarm2) refers to dl_rtc_common.o(.text.DL_RTC_Common_setCalendarAlarm2) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_getCalendarAlarm2) refers to dl_rtc_common.o(.text.DL_RTC_Common_getCalendarAlarm2) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_enableCalendarAlarm2) refers to dl_rtc_common.o(.text.DL_RTC_Common_enableCalendarAlarm2) for [Anonymous Symbol]
+    dl_rtc_common.o(.ARM.exidx.text.DL_RTC_Common_disableCalendarAlarm2) refers to dl_rtc_common.o(.text.DL_RTC_Common_disableCalendarAlarm2) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_init) refers to dl_spi.o(.text.DL_SPI_init) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_setClockConfig) refers to dl_spi.o(.text.DL_SPI_setClockConfig) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_getClockConfig) refers to dl_spi.o(.text.DL_SPI_getClockConfig) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataBlocking8) refers to dl_spi.o(.text.DL_SPI_receiveDataBlocking8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataBlocking16) refers to dl_spi.o(.text.DL_SPI_receiveDataBlocking16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataBlocking32) refers to dl_spi.o(.text.DL_SPI_receiveDataBlocking32) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataBlocking8) refers to dl_spi.o(.text.DL_SPI_transmitDataBlocking8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataBlocking16) refers to dl_spi.o(.text.DL_SPI_transmitDataBlocking16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataBlocking32) refers to dl_spi.o(.text.DL_SPI_transmitDataBlocking32) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataCheck8) refers to dl_spi.o(.text.DL_SPI_receiveDataCheck8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataCheck16) refers to dl_spi.o(.text.DL_SPI_receiveDataCheck16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_receiveDataCheck32) refers to dl_spi.o(.text.DL_SPI_receiveDataCheck32) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataCheck8) refers to dl_spi.o(.text.DL_SPI_transmitDataCheck8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataCheck16) refers to dl_spi.o(.text.DL_SPI_transmitDataCheck16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_transmitDataCheck32) refers to dl_spi.o(.text.DL_SPI_transmitDataCheck32) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_drainRXFIFO8) refers to dl_spi.o(.text.DL_SPI_drainRXFIFO8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_drainRXFIFO16) refers to dl_spi.o(.text.DL_SPI_drainRXFIFO16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_drainRXFIFO32) refers to dl_spi.o(.text.DL_SPI_drainRXFIFO32) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_fillTXFIFO8) refers to dl_spi.o(.text.DL_SPI_fillTXFIFO8) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_fillTXFIFO16) refers to dl_spi.o(.text.DL_SPI_fillTXFIFO16) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_saveConfiguration) refers to dl_spi.o(.text.DL_SPI_saveConfiguration) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_restoreConfiguration) refers to dl_spi.o(.text.DL_SPI_restoreConfiguration) for [Anonymous Symbol]
+    dl_spi.o(.ARM.exidx.text.DL_SPI_fillTXFIFO32) refers to dl_spi.o(.text.DL_SPI_fillTXFIFO32) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setClockConfig) refers to dl_timer.o(.text.DL_Timer_setClockConfig) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getClockConfig) refers to dl_timer.o(.text.DL_Timer_getClockConfig) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initTimerMode) refers to dl_timer.o(.text.DL_Timer_initTimerMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareValue) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareValue) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareCtl) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareCtl) for [Anonymous Symbol]
+    dl_timer.o(.text.DL_Timer_initCaptureMode) refers to dl_timer.o(.rodata..Lswitch.table.DL_Timer_initCompareMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initCaptureMode) refers to dl_timer.o(.text.DL_Timer_initCaptureMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareInput) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareInput) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initCaptureTriggerMode) refers to dl_timer.o(.text.DL_Timer_initCaptureTriggerMode) for [Anonymous Symbol]
+    dl_timer.o(.text.DL_Timer_initCaptureCombinedMode) refers to dl_timer.o(.rodata..Lswitch.table.DL_Timer_initCompareMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initCaptureCombinedMode) refers to dl_timer.o(.text.DL_Timer_initCaptureCombinedMode) for [Anonymous Symbol]
+    dl_timer.o(.text.DL_Timer_initCompareMode) refers to dl_timer.o(.rodata..Lswitch.table.DL_Timer_initCompareMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initCompareMode) refers to dl_timer.o(.text.DL_Timer_initCompareMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initCompareTriggerMode) refers to dl_timer.o(.text.DL_Timer_initCompareTriggerMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareValue) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareValue) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareCtl) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareCtl) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setSecondCompSrcDn) refers to dl_timer.o(.text.DL_Timer_setSecondCompSrcDn) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getSecondCompSrcDn) refers to dl_timer.o(.text.DL_Timer_getSecondCompSrcDn) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setSecondCompSrcUp) refers to dl_timer.o(.text.DL_Timer_setSecondCompSrcUp) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getSecondCompSrcUp) refers to dl_timer.o(.text.DL_Timer_getSecondCompSrcUp) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setSecondCompActionDn) refers to dl_timer.o(.text.DL_Timer_setSecondCompActionDn) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getSecondCompActionDn) refers to dl_timer.o(.text.DL_Timer_getSecondCompActionDn) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setSecondCompActionUp) refers to dl_timer.o(.text.DL_Timer_setSecondCompActionUp) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getSecondCompActionUp) refers to dl_timer.o(.text.DL_Timer_getSecondCompActionUp) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_enableSuppressionOfCompEvent) refers to dl_timer.o(.text.DL_Timer_enableSuppressionOfCompEvent) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_disableSuppressionOfCompEvent) refers to dl_timer.o(.text.DL_Timer_disableSuppressionOfCompEvent) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptCompUpdateMethod) refers to dl_timer.o(.text.DL_Timer_setCaptCompUpdateMethod) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptCompUpdateMethod) refers to dl_timer.o(.text.DL_Timer_getCaptCompUpdateMethod) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptCompActUpdateMethod) refers to dl_timer.o(.text.DL_Timer_setCaptCompActUpdateMethod) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptCompActUpdateMethod) refers to dl_timer.o(.text.DL_Timer_getCaptCompActUpdateMethod) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareOutCtl) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareOutCtl) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareOutCtl) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareOutCtl) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareAction) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareAction) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareAction) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareAction) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_overrideCCPOut) refers to dl_timer.o(.text.DL_Timer_overrideCCPOut) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareInput) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareInput) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setCaptureCompareInputFilter) refers to dl_timer.o(.text.DL_Timer_setCaptureCompareInputFilter) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getCaptureCompareInputFilter) refers to dl_timer.o(.text.DL_Timer_getCaptureCompareInputFilter) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_enableCaptureCompareInputFilter) refers to dl_timer.o(.text.DL_Timer_enableCaptureCompareInputFilter) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_disableCaptureCompareInputFilter) refers to dl_timer.o(.text.DL_Timer_disableCaptureCompareInputFilter) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_isCaptureCompareInputFilterEnabled) refers to dl_timer.o(.text.DL_Timer_isCaptureCompareInputFilterEnabled) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_saveConfiguration) refers to dl_timer.o(.text.DL_Timer_saveConfiguration) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_restoreConfiguration) refers to dl_timer.o(.text.DL_Timer_restoreConfiguration) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_initFourCCPWMMode) refers to dl_timer.o(.text.DL_Timer_initFourCCPWMMode) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_setFaultSourceConfig) refers to dl_timer.o(.text.DL_Timer_setFaultSourceConfig) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_getFaultSourceConfig) refers to dl_timer.o(.text.DL_Timer_getFaultSourceConfig) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_TimerA_saveConfiguration) refers to dl_timer.o(.text.DL_TimerA_saveConfiguration) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_TimerA_restoreConfiguration) refers to dl_timer.o(.text.DL_TimerA_restoreConfiguration) for [Anonymous Symbol]
+    dl_timer.o(.ARM.exidx.text.DL_Timer_configQEIHallInputMode) refers to dl_timer.o(.text.DL_Timer_configQEIHallInputMode) for [Anonymous Symbol]
+    dl_trng.o(.ARM.exidx.text.DL_TRNG_saveConfiguration) refers to dl_trng.o(.text.DL_TRNG_saveConfiguration) for [Anonymous Symbol]
+    dl_trng.o(.ARM.exidx.text.DL_TRNG_restoreConfiguration) refers to dl_trng.o(.text.DL_TRNG_restoreConfiguration) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_init) refers to dl_uart.o(.text.DL_UART_init) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_setClockConfig) refers to dl_uart.o(.text.DL_UART_setClockConfig) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_getClockConfig) refers to dl_uart.o(.text.DL_UART_getClockConfig) for [Anonymous Symbol]
+    dl_uart.o(.text.DL_UART_configBaudRate) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    dl_uart.o(.ARM.exidx.text.DL_UART_configBaudRate) refers to dl_uart.o(.text.DL_UART_configBaudRate) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_configIrDAMode) refers to dl_uart.o(.text.DL_UART_configIrDAMode) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_setIrDAPulseLength) refers to dl_uart.o(.text.DL_UART_setIrDAPulseLength) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_receiveDataBlocking) refers to dl_uart.o(.text.DL_UART_receiveDataBlocking) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_transmitDataBlocking) refers to dl_uart.o(.text.DL_UART_transmitDataBlocking) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_receiveDataCheck) refers to dl_uart.o(.text.DL_UART_receiveDataCheck) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_transmitDataCheck) refers to dl_uart.o(.text.DL_UART_transmitDataCheck) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_drainRXFIFO) refers to dl_uart.o(.text.DL_UART_drainRXFIFO) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_fillTXFIFO) refers to dl_uart.o(.text.DL_UART_fillTXFIFO) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_Main_saveConfiguration) refers to dl_uart.o(.text.DL_UART_Main_saveConfiguration) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_Main_restoreConfiguration) refers to dl_uart.o(.text.DL_UART_Main_restoreConfiguration) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_Extend_saveConfiguration) refers to dl_uart.o(.text.DL_UART_Extend_saveConfiguration) for [Anonymous Symbol]
+    dl_uart.o(.ARM.exidx.text.DL_UART_Extend_restoreConfiguration) refers to dl_uart.o(.text.DL_UART_Extend_restoreConfiguration) for [Anonymous Symbol]
+    dl_vref.o(.ARM.exidx.text.DL_VREF_configReference) refers to dl_vref.o(.text.DL_VREF_configReference) for [Anonymous Symbol]
+    dl_vref.o(.ARM.exidx.text.DL_VREF_setClockConfig) refers to dl_vref.o(.text.DL_VREF_setClockConfig) for [Anonymous Symbol]
+    dl_vref.o(.ARM.exidx.text.DL_VREF_getClockConfig) refers to dl_vref.o(.text.DL_VREF_getClockConfig) for [Anonymous Symbol]
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to main.o(.text.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to empty.o(.text.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    rt_div0.o(.text) refers to defsig_fpe_outer.o(.text) for __rt_SIGFPE
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup_mspm0g350x_uvision.o(.text) for __user_initial_stackheap
+    sys_stackheap_outer.o(__vectab_stack_and_reset_area) refers to tempstk.o(.text) for __temporary_stack_top
+    sys_stackheap_outer.o(__vectab_stack_and_reset_area) refers to __main.o(!!!main) for __main
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    defsig_fpe_outer.o(.text) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig_fpe_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_fpe_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000034) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000002) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000006) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000010) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_relocate_pie_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000035) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000027) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_user_alloc_1
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$0000001A) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000028) refers to argv_veneer.o(.text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000029) refers to argv_veneer.o(.text) for __ARM_argv_veneer
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_exit_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_wrch_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_command_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
