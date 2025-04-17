@@ -73,7 +73,8 @@ extern "C" {
 #define POWER_STARTUP_DELAY                                                (16)
 
 
-#define CPUCLK_FREQ                                                     32000000
+
+#define CPUCLK_FREQ                                                     80000000
 
 
 
@@ -81,7 +82,7 @@ extern "C" {
 #define Motor_INST                                                         TIMA0
 #define Motor_INST_IRQHandler                                   TIMA0_IRQHandler
 #define Motor_INST_INT_IRQN                                     (TIMA0_INT_IRQn)
-#define Motor_INST_CLK_FREQ                                             32000000
+#define Motor_INST_CLK_FREQ                                             80000000
 /* GPIO defines for channel 0 */
 #define GPIO_Motor_C0_PORT                                                 GPIOA
 #define GPIO_Motor_C0_PIN                                         DL_GPIO_PIN_21
@@ -94,6 +95,14 @@ extern "C" {
 #define GPIO_Motor_C1_IOMUX                                      (IOMUX_PINCM47)
 #define GPIO_Motor_C1_IOMUX_FUNC                     IOMUX_PINCM47_PF_TIMA0_CCP1
 #define GPIO_Motor_C1_IDX                                    DL_TIMER_CC_1_INDEX
+
+
+
+/* Defines for TIMER */
+#define TIMER_INST                                                       (TIMG0)
+#define TIMER_INST_IRQHandler                                   TIMG0_IRQHandler
+#define TIMER_INST_INT_IRQN                                     (TIMG0_INT_IRQn)
+#define TIMER_INST_LOAD_VALUE                                             (204U)
 
 
 
@@ -128,7 +137,7 @@ extern "C" {
 
 /* Defines for WIT_uart */
 #define WIT_uart_INST                                                      UART1
-#define WIT_uart_INST_FREQUENCY                                         32000000
+#define WIT_uart_INST_FREQUENCY                                         40000000
 #define WIT_uart_INST_IRQHandler                                UART1_IRQHandler
 #define WIT_uart_INST_INT_IRQN                                    UART1_INT_IRQn
 #define GPIO_WIT_uart_RX_PORT                                              GPIOA
@@ -140,11 +149,11 @@ extern "C" {
 #define GPIO_WIT_uart_IOMUX_RX_FUNC                    IOMUX_PINCM20_PF_UART1_RX
 #define GPIO_WIT_uart_IOMUX_TX_FUNC                    IOMUX_PINCM19_PF_UART1_TX
 #define WIT_uart_BAUD_RATE                                                (9600)
-#define WIT_uart_IBRD_32_MHZ_9600_BAUD                                     (208)
-#define WIT_uart_FBRD_32_MHZ_9600_BAUD                                      (21)
+#define WIT_uart_IBRD_40_MHZ_9600_BAUD                                     (260)
+#define WIT_uart_FBRD_40_MHZ_9600_BAUD                                      (27)
 /* Defines for BLUE_TOOTH */
 #define BLUE_TOOTH_INST                                                    UART0
-#define BLUE_TOOTH_INST_FREQUENCY                                        4000000
+#define BLUE_TOOTH_INST_FREQUENCY                                       40000000
 #define BLUE_TOOTH_INST_IRQHandler                              UART0_IRQHandler
 #define BLUE_TOOTH_INST_INT_IRQN                                  UART0_INT_IRQn
 #define GPIO_BLUE_TOOTH_RX_PORT                                            GPIOA
@@ -156,8 +165,8 @@ extern "C" {
 #define GPIO_BLUE_TOOTH_IOMUX_RX_FUNC                  IOMUX_PINCM22_PF_UART0_RX
 #define GPIO_BLUE_TOOTH_IOMUX_TX_FUNC                  IOMUX_PINCM21_PF_UART0_TX
 #define BLUE_TOOTH_BAUD_RATE                                            (115200)
-#define BLUE_TOOTH_IBRD_4_MHZ_115200_BAUD                                    (2)
-#define BLUE_TOOTH_FBRD_4_MHZ_115200_BAUD                                   (11)
+#define BLUE_TOOTH_IBRD_40_MHZ_115200_BAUD                                  (21)
+#define BLUE_TOOTH_FBRD_40_MHZ_115200_BAUD                                  (45)
 
 
 
@@ -264,7 +273,9 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_SYSCTL_CLK_init(void);
 void SYSCFG_DL_Motor_init(void);
+void SYSCFG_DL_TIMER_init(void);
 void SYSCFG_DL_OLED_init(void);
 void SYSCFG_DL_WIT_init(void);
 void SYSCFG_DL_WIT_uart_init(void);

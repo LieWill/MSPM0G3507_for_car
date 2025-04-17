@@ -53,12 +53,15 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
     /* Module-Specific Initializations*/
     SYSCFG_DL_SYSCTL_init();
     SYSCFG_DL_Motor_init();
+    SYSCFG_DL_TIMER_init();
     SYSCFG_DL_OLED_init();
     SYSCFG_DL_WIT_init();
     SYSCFG_DL_WIT_uart_init();
     SYSCFG_DL_BLUE_TOOTH_init();
+    SYSCFG_DL_SYSCTL_CLK_init();
     /* Ensure backup structures have no valid state */
 	gMotorBackup.backupRdy 	= false;
+
 
 
 }
@@ -90,6 +93,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
     DL_GPIO_reset(GPIOA);
     DL_GPIO_reset(GPIOB);
     DL_TimerA_reset(Motor_INST);
+    DL_TimerG_reset(TIMER_INST);
     DL_I2C_reset(OLED_INST);
     DL_I2C_reset(WIT_INST);
     DL_UART_Main_reset(WIT_uart_INST);
@@ -98,6 +102,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
     DL_GPIO_enablePower(GPIOA);
     DL_GPIO_enablePower(GPIOB);
     DL_TimerA_enablePower(Motor_INST);
+    DL_TimerG_enablePower(TIMER_INST);
     DL_I2C_enablePower(OLED_INST);
     DL_I2C_enablePower(WIT_INST);
     DL_UART_Main_enablePower(WIT_uart_INST);
@@ -251,29 +256,59 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 }
 
 
+static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
+    .inputFreq              = DL_SYSCTL_SYSPLL_INPUT_FREQ_32_48_MHZ,
+	.rDivClk2x              = 1,
+	.rDivClk1               = 0,
+	.rDivClk0               = 0,
+	.enableCLK2x            = DL_SYSCTL_SYSPLL_CLK2X_DISABLE,
+	.enableCLK1             = DL_SYSCTL_SYSPLL_CLK1_DISABLE,
+	.enableCLK0             = DL_SYSCTL_SYSPLL_CLK0_ENABLE,
+	.sysPLLMCLK             = DL_SYSCTL_SYSPLL_MCLK_CLK0,
+	.sysPLLRef              = DL_SYSCTL_SYSPLL_REF_SYSOSC,
+	.qDiv                   = 4,
+	.pDiv                   = DL_SYSCTL_SYSPLL_PDIV_1
+};
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
 
 	//Low Power Mode is configured to be SLEEP0
     DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_0);
+    DL_SYSCTL_setFlashWaitState(DL_SYSCTL_FLASH_WAIT_STATE_2);
 
-    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-    /* Set default configuration */
-    DL_SYSCTL_disableHFXT();
-    DL_SYSCTL_disableSYSPLL();
-    DL_SYSCTL_enableMFCLK();
-    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
-    DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
+    
+	DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+	/* Set default configuration */
+	DL_SYSCTL_disableHFXT();
+	DL_SYSCTL_disableSYSPLL();
+    DL_SYSCTL_configSYSPLL((DL_SYSCTL_SYSPLLConfig *) &gSYSPLLConfig);
+    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_2);
+    DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);
     /* INT_GROUP1 Priority */
-    NVIC_SetPriority(GPIOA_INT_IRQn, 0);
+    NVIC_SetPriority(GPIOA_INT_IRQn, 1);
 
+}
+SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void) {
+    while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_SYSPLL_GOOD
+		 | DL_SYSCTL_CLK_STATUS_HSCLK_GOOD
+		 | DL_SYSCTL_CLK_STATUS_LFOSC_GOOD))
+	       != (DL_SYSCTL_CLK_STATUS_SYSPLL_GOOD
+		 | DL_SYSCTL_CLK_STATUS_HSCLK_GOOD
+		 | DL_SYSCTL_CLK_STATUS_LFOSC_GOOD))
+	{
+		/* Ensure that clocks are in default POR configuration before initialization.
+		* Additionally once LFXT is enabled, the internal LFOSC is disabled, and cannot
+		* be re-enabled other than by executing a BOOTRST. */
+		;
+	}
 }
 
 
+
 /*
- * Timer clock configuration to be sourced by  / 1 (32000000 Hz)
+ * Timer clock configuration to be sourced by  / 1 (80000000 Hz)
  * timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
- *   32000000 Hz = 32000000 Hz / (1 * (0 + 1))
+ *   80000000 Hz = 80000000 Hz / (1 * (0 + 1))
  */
 static const DL_TimerA_ClockConfig gMotorClockConfig = {
     .clockSel = DL_TIMER_CLOCK_BUSCLK,
@@ -323,6 +358,45 @@ SYSCONFIG_WEAK void SYSCFG_DL_Motor_init(void) {
 }
 
 
+
+/*
+ * Timer clock configuration to be sourced by LFCLK /  (4096 Hz)
+ * timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
+ *   4096 Hz = 4096 Hz / (8 * (0 + 1))
+ */
+static const DL_TimerG_ClockConfig gTIMERClockConfig = {
+    .clockSel    = DL_TIMER_CLOCK_LFCLK,
+    .divideRatio = DL_TIMER_CLOCK_DIVIDE_8,
+    .prescale    = 0U,
+};
+
+/*
+ * Timer load value (where the counter starts from) is calculated as (timerPeriod * timerClockFreq) - 1
+ * TIMER_INST_LOAD_VALUE = (0.05s * 4096 Hz) - 1
+ */
+static const DL_TimerG_TimerConfig gTIMERTimerConfig = {
+    .period     = TIMER_INST_LOAD_VALUE,
+    .timerMode  = DL_TIMER_TIMER_MODE_PERIODIC_UP,
+    .startTimer = DL_TIMER_STOP,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_TIMER_init(void) {
+
+    DL_TimerG_setClockConfig(TIMER_INST,
+        (DL_TimerG_ClockConfig *) &gTIMERClockConfig);
+
+    DL_TimerG_initTimerMode(TIMER_INST,
+        (DL_TimerG_TimerConfig *) &gTIMERTimerConfig);
+    DL_TimerG_enableInterrupt(TIMER_INST , DL_TIMERG_INTERRUPT_LOAD_EVENT);
+    DL_TimerG_enableClock(TIMER_INST);
+
+
+
+
+
+}
+
+
 static const DL_I2C_ClockConfig gOLEDClockConfig = {
     .clockSel = DL_I2C_CLOCK_BUSCLK,
     .divideRatio = DL_I2C_CLOCK_DIVIDE_1,
@@ -337,7 +411,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_OLED_init(void) {
     /* Configure Controller Mode */
     DL_I2C_resetControllerTransfer(OLED_INST);
     /* Set frequency to 400000 Hz*/
-    DL_I2C_setTimerPeriod(OLED_INST, 7);
+    DL_I2C_setTimerPeriod(OLED_INST, 9);
     DL_I2C_setControllerTXFIFOThreshold(OLED_INST, DL_I2C_TX_FIFO_LEVEL_EMPTY);
     DL_I2C_setControllerRXFIFOThreshold(OLED_INST, DL_I2C_RX_FIFO_LEVEL_BYTES_1);
     DL_I2C_enableControllerClockStretching(OLED_INST);
@@ -389,10 +463,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_WIT_uart_init(void)
     /*
      * Configure baud rate by setting oversampling and baud rate divisors.
      *  Target baud rate: 9600
-     *  Actual baud rate: 9600.24
+     *  Actual baud rate: 9599.81
      */
     DL_UART_Main_setOversampling(WIT_uart_INST, DL_UART_OVERSAMPLING_RATE_16X);
-    DL_UART_Main_setBaudRateDivisor(WIT_uart_INST, WIT_uart_IBRD_32_MHZ_9600_BAUD, WIT_uart_FBRD_32_MHZ_9600_BAUD);
+    DL_UART_Main_setBaudRateDivisor(WIT_uart_INST, WIT_uart_IBRD_40_MHZ_9600_BAUD, WIT_uart_FBRD_40_MHZ_9600_BAUD);
 
 
 
@@ -400,7 +474,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_WIT_uart_init(void)
 }
 
 static const DL_UART_Main_ClockConfig gBLUE_TOOTHClockConfig = {
-    .clockSel    = DL_UART_MAIN_CLOCK_MFCLK,
+    .clockSel    = DL_UART_MAIN_CLOCK_BUSCLK,
     .divideRatio = DL_UART_MAIN_CLOCK_DIVIDE_RATIO_1
 };
 
@@ -421,10 +495,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_BLUE_TOOTH_init(void)
     /*
      * Configure baud rate by setting oversampling and baud rate divisors.
      *  Target baud rate: 115200
-     *  Actual baud rate: 115107.91
+     *  Actual baud rate: 115190.78
      */
     DL_UART_Main_setOversampling(BLUE_TOOTH_INST, DL_UART_OVERSAMPLING_RATE_16X);
-    DL_UART_Main_setBaudRateDivisor(BLUE_TOOTH_INST, BLUE_TOOTH_IBRD_4_MHZ_115200_BAUD, BLUE_TOOTH_FBRD_4_MHZ_115200_BAUD);
+    DL_UART_Main_setBaudRateDivisor(BLUE_TOOTH_INST, BLUE_TOOTH_IBRD_40_MHZ_115200_BAUD, BLUE_TOOTH_FBRD_40_MHZ_115200_BAUD);
 
 
     /* Configure Interrupts */

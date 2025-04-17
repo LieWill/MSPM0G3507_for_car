@@ -190,7 +190,7 @@
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>1</hadIROM2>
             <StupSel>0</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -323,7 +323,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>4</wLevel>
+            <wLevel>3</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3507__</Define>
               <Undefine></Undefine>
-              <IncludePath>D:\ti\mspm0_sdk_2_04_00_06\source\third_party\CMSIS\Core\Include;D:\ti\mspm0_sdk_2_04_00_06\source;..\USER;..\..\BSP\OLED;..\..\BSP\VOFA</IncludePath>
+              <IncludePath>D:\ti\mspm0_sdk_2_04_00_06\source\third_party\CMSIS\Core\Include;D:\ti\mspm0_sdk_2_04_00_06\source;..\USER;..\..\BSP\OLED;..\..\BSP\VOFA;..\BSP\Motor;..\BSP\PID;..\BSP\WIT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -414,6 +414,11 @@
         <Group>
           <GroupName>lib</GroupName>
           <Files>
+            <File>
+              <FileName>dl_sysctl_mspm0g1x0x_g3x0x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>D:\ti\mspm0_sdk_2_04_00_06\source\ti\driverlib\m0p\sysctl\dl_sysctl_mspm0g1x0x_g3x0x.c</FilePath>
+            </File>
             <File>
               <FileName>dl_adc12.c</FileName>
               <FileType>1</FileType>
@@ -608,6 +613,66 @@
               <FileName>vofa.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\BSP\VOFA\vofa.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Motor</GroupName>
+          <Files>
+            <File>
+              <FileName>motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\Motor\motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\Motor\motor.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PID</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\PID\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\PID\pid.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RIF</GroupName>
+          <Files>
+            <File>
+              <FileName>rif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\RIF\rif.c</FilePath>
+            </File>
+            <File>
+              <FileName>rif.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\RIF\rif.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>WIT</GroupName>
+          <Files>
+            <File>
+              <FileName>wit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\WIT\wit.h</FilePath>
+            </File>
+            <File>
+              <FileName>wit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\WIT\wit.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,0 +1,27 @@
+/.vscode/launch.json
+/.settings
+/.eide/log
+/.eide.usr.ctx.json
+
+# project out
+/build
+/bin
+/obj
+/out
+
+# eide template
+*.ept
+*.eide-template
+
+/Objects
+
+# keil cmsis files
+/keil/.cmsis
+keil/.eide/eide.json
+keil/.eide/env.ini
+keil/.eide/files.options.yml
+keil/.vscode/c_cpp_properties.json
+keil/.vscode/keil-assistant.log
+keil/.vscode/settings.json
+keil/.vscode/tasks.json
+.gitignore
