@@ -4,9 +4,19 @@
 #include "ti_msp_dl_config.h"
 #include "REG.h"
 
-#define WIT_ADD (0x50)
 
-uint16_t wit_get_yaw(I2C_Regs *i2c_regs);
+
+//#define USING_I2C
+
+#if defined (USING_I2C)
+#define WIT_ADD (0x50)
+volatile uint16_t wit_get_yaw(I2C_Regs *i2c_regs);
+#else
+volatile uint16_t wit_get_yaw(void);
+volatile uint16_t wit_get_roll(void);
+volatile uint16_t wit_get_pitch(void);
+#endif
+
 static inline float wit_to_float(uint16_t data) {
     return data / 32768.0f * 180.0f;
 }
