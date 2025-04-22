@@ -148,9 +148,9 @@ extern "C" {
 #define GPIO_WIT_uart_IOMUX_TX                                   (IOMUX_PINCM19)
 #define GPIO_WIT_uart_IOMUX_RX_FUNC                    IOMUX_PINCM20_PF_UART1_RX
 #define GPIO_WIT_uart_IOMUX_TX_FUNC                    IOMUX_PINCM19_PF_UART1_TX
-#define WIT_uart_BAUD_RATE                                                (9600)
-#define WIT_uart_IBRD_40_MHZ_9600_BAUD                                     (260)
-#define WIT_uart_FBRD_40_MHZ_9600_BAUD                                      (27)
+#define WIT_uart_BAUD_RATE                                              (115200)
+#define WIT_uart_IBRD_40_MHZ_115200_BAUD                                    (21)
+#define WIT_uart_FBRD_40_MHZ_115200_BAUD                                    (45)
 /* Defines for BLUE_TOOTH */
 #define BLUE_TOOTH_INST                                                    UART0
 #define BLUE_TOOTH_INST_FREQUENCY                                       40000000
@@ -172,6 +172,12 @@ extern "C" {
 
 
 
+/* Port definition for Pin Group buzzer */
+#define buzzer_PORT                                                      (GPIOB)
+
+/* Defines for PIN_12: GPIOB.17 with pinCMx 43 on package pin 14 */
+#define buzzer_PIN_12_PIN                                       (DL_GPIO_PIN_17)
+#define buzzer_PIN_12_IOMUX                                      (IOMUX_PINCM43)
 /* Port definition for Pin Group RIF */
 #define RIF_PORT                                                         (GPIOB)
 
@@ -230,14 +236,13 @@ extern "C" {
 #define QEI_PORT                                                         (GPIOA)
 
 /* Defines for EA1: GPIOA.1 with pinCMx 2 on package pin 34 */
-// pins affected by this interrupt request:["EA1","EA2","EB1","EB2"]
+// pins affected by this interrupt request:["EA1","EB1"]
 #define QEI_INT_IRQN                                            (GPIOA_INT_IRQn)
 #define QEI_INT_IIDX                            (DL_INTERRUPT_GROUP1_IIDX_GPIOA)
 #define QEI_EA1_IIDX                                         (DL_GPIO_IIDX_DIO1)
 #define QEI_EA1_PIN                                              (DL_GPIO_PIN_1)
 #define QEI_EA1_IOMUX                                             (IOMUX_PINCM2)
 /* Defines for EA2: GPIOA.0 with pinCMx 1 on package pin 33 */
-#define QEI_EA2_IIDX                                         (DL_GPIO_IIDX_DIO0)
 #define QEI_EA2_PIN                                              (DL_GPIO_PIN_0)
 #define QEI_EA2_IOMUX                                             (IOMUX_PINCM1)
 /* Defines for EB1: GPIOA.14 with pinCMx 36 on package pin 7 */
@@ -245,15 +250,8 @@ extern "C" {
 #define QEI_EB1_PIN                                             (DL_GPIO_PIN_14)
 #define QEI_EB1_IOMUX                                            (IOMUX_PINCM36)
 /* Defines for EB2: GPIOA.15 with pinCMx 37 on package pin 8 */
-#define QEI_EB2_IIDX                                        (DL_GPIO_IIDX_DIO15)
 #define QEI_EB2_PIN                                             (DL_GPIO_PIN_15)
 #define QEI_EB2_IOMUX                                            (IOMUX_PINCM37)
-/* Port definition for Pin Group buzzer */
-#define buzzer_PORT                                                      (GPIOB)
-
-/* Defines for PIN_12: GPIOB.17 with pinCMx 43 on package pin 14 */
-#define buzzer_PIN_12_PIN                                       (DL_GPIO_PIN_17)
-#define buzzer_PIN_12_IOMUX                                      (IOMUX_PINCM43)
 /* Port definition for Pin Group Button */
 #define Button_PORT                                                      (GPIOB)
 

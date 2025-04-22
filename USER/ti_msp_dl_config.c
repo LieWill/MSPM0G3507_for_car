@@ -148,6 +148,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_initPeripheralInputFunction(
         GPIO_BLUE_TOOTH_IOMUX_RX, GPIO_BLUE_TOOTH_IOMUX_RX_FUNC);
 
+    DL_GPIO_initDigitalOutput(buzzer_PIN_12_IOMUX);
+
     DL_GPIO_initDigitalInputFeatures(RIF_PIN_0_IOMUX,
 		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
 		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
@@ -194,8 +196,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
 		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(buzzer_PIN_12_IOMUX);
-
     DL_GPIO_initDigitalOutput(Button_P1_IOMUX);
 
     DL_GPIO_initDigitalOutput(Button_P2_IOMUX);
@@ -207,14 +207,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		DL_GPIO_PIN_14_EDGE_RISE |
 		DL_GPIO_PIN_15_EDGE_RISE);
     DL_GPIO_clearInterruptStatus(QEI_PORT, QEI_EA1_PIN |
-		QEI_EA2_PIN |
-		QEI_EB1_PIN |
-		QEI_EB2_PIN);
+		QEI_EB1_PIN);
     DL_GPIO_enableInterrupt(QEI_PORT, QEI_EA1_PIN |
-		QEI_EA2_PIN |
-		QEI_EB1_PIN |
-		QEI_EB2_PIN);
-    DL_GPIO_clearPins(GPIOB, RIF_PIN_1_PIN |
+		QEI_EB1_PIN);
+    DL_GPIO_clearPins(GPIOB, buzzer_PIN_12_PIN |
+		RIF_PIN_1_PIN |
 		RIF_PIN_2_PIN |
 		RIF_PIN_3_PIN |
 		RIF_PIN_4_PIN |
@@ -229,11 +226,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		MOTOR_AIN2_PIN |
 		MOTOR_BIN1_PIN |
 		MOTOR_BIN2_PIN |
-		buzzer_PIN_12_PIN |
 		Button_P1_PIN |
 		Button_P2_PIN |
 		Button_P3_PIN);
-    DL_GPIO_enableOutput(GPIOB, RIF_PIN_1_PIN |
+    DL_GPIO_enableOutput(GPIOB, buzzer_PIN_12_PIN |
+		RIF_PIN_1_PIN |
 		RIF_PIN_2_PIN |
 		RIF_PIN_3_PIN |
 		RIF_PIN_4_PIN |
@@ -248,7 +245,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		MOTOR_AIN2_PIN |
 		MOTOR_BIN1_PIN |
 		MOTOR_BIN2_PIN |
-		buzzer_PIN_12_PIN |
 		Button_P1_PIN |
 		Button_P2_PIN |
 		Button_P3_PIN);
@@ -462,13 +458,25 @@ SYSCONFIG_WEAK void SYSCFG_DL_WIT_uart_init(void)
     DL_UART_Main_init(WIT_uart_INST, (DL_UART_Main_Config *) &gWIT_uartConfig);
     /*
      * Configure baud rate by setting oversampling and baud rate divisors.
-     *  Target baud rate: 9600
-     *  Actual baud rate: 9599.81
+     *  Target baud rate: 115200
+     *  Actual baud rate: 115190.78
      */
     DL_UART_Main_setOversampling(WIT_uart_INST, DL_UART_OVERSAMPLING_RATE_16X);
-    DL_UART_Main_setBaudRateDivisor(WIT_uart_INST, WIT_uart_IBRD_40_MHZ_9600_BAUD, WIT_uart_FBRD_40_MHZ_9600_BAUD);
+    DL_UART_Main_setBaudRateDivisor(WIT_uart_INST, WIT_uart_IBRD_40_MHZ_115200_BAUD, WIT_uart_FBRD_40_MHZ_115200_BAUD);
 
 
+    /* Configure Interrupts */
+    DL_UART_Main_enableInterrupt(WIT_uart_INST,
+                                 DL_UART_MAIN_INTERRUPT_RX);
+
+    /* Configure FIFOs */
+    DL_UART_Main_enableFIFOs(WIT_uart_INST);
+    DL_UART_Main_setRXFIFOThreshold(WIT_uart_INST, DL_UART_RX_FIFO_LEVEL_3_4_FULL);
+    DL_UART_Main_setTXFIFOThreshold(WIT_uart_INST, DL_UART_TX_FIFO_LEVEL_1_2_EMPTY);
+
+    /* Configure analog glitch filter */
+    DL_UART_Main_enableAnalogGlitchFilter(WIT_uart_INST);
+    DL_UART_Main_setAnalogPulseWidth(WIT_uart_INST, DL_UART_PULSE_WIDTH_50_NS);
 
     DL_UART_Main_enable(WIT_uart_INST);
 }

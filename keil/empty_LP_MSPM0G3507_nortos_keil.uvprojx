@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3507__</Define>
               <Undefine></Undefine>
-              <IncludePath>D:\ti\mspm0_sdk_2_04_00_06\source\third_party\CMSIS\Core\Include;D:\ti\mspm0_sdk_2_04_00_06\source;..\USER;..\..\BSP\OLED;..\..\BSP\VOFA;..\BSP\Motor;..\BSP\PID;..\BSP\WIT</IncludePath>
+              <IncludePath>D:\ti\mspm0_sdk_2_04_00_06\source\third_party\CMSIS\Core\Include;D:\ti\mspm0_sdk_2_04_00_06\source;..\USER;..\..\BSP\OLED;..\..\BSP\VOFA;..\BSP\Motor;..\BSP\PID;..\BSP\WIT;..\BSP\TIMER;..\BSP\RIF;..\BSP\QEI</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -673,6 +673,36 @@
               <FileName>wit.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\WIT\wit.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TIMER</GroupName>
+          <Files>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\TIMER\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\TIMER\timer.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>QEI</GroupName>
+          <Files>
+            <File>
+              <FileName>qei.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\QEI\qei.c</FilePath>
+            </File>
+            <File>
+              <FileName>qei.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\QEI\qei.h</FilePath>
             </File>
           </Files>
         </Group>
