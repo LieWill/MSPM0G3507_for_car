@@ -4,6 +4,11 @@
             "path": "."
         }
     ],
-    "settings": {},
+    "settings": {
+        "files.associations": {
+            "ti_msp_dl_config.h": "c",
+            "type_traits": "c"
+        }
+    },
     "extensions": {}
 }

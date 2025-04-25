@@ -41,6 +41,7 @@ LR_IROM1 0x00000000 0x00020000  {    ; load region size_region
    *(InRoot$$Sections)
    .ANY (+RO)
    .ANY (+XO)
+   .EEPROM ;FLASH模拟EEPROM读写字段
   }
   RW_IRAM2 0x20200000 0x00008000  {  ; RW data
    .ANY (+RW +ZI)

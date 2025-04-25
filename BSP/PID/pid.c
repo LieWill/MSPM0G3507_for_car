@@ -19,19 +19,20 @@ void pid_run_speed(pid_speed *input)
     input->last_target = input->target;
 #endif
 //	if(input->out > 1000)
-//			input->out = 1000;
-//		else if(input->out < -1000)
-//			input->out = -1000;
-		//input->out = 100;
+//		input->out = 1000;
+//	else if(input->out < -1000)
+//		input->out = -1000;
     input->last_error = error;
 		input->last_real = input->real;
 }
 
 void pid_run_rif(pid_rif *input)
 {
+    input->real = input->real * 0.6 + input->last_real * 0.4;
     int error = input->target - input->real;
     input->out = error * input->kp + (error - input->last_error) * input->kd;
     input->last_error = error;
+		input->last_real = input->real;
 }
 
 void pid_run_distance(pid_distance *input)

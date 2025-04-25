@@ -15,17 +15,17 @@ void motor_init()
 
 void motor_speed(int left, int right)
 {
-    if (left > 0)
+    if (right > 0)
     {
         DL_GPIO_setPins(Motor_port, GPIO_LEFT1);
         DL_GPIO_clearPins(Motor_port, GPIO_LEFT2);
-        DL_TimerG_setCaptureCompareValue(Motor_INST, left, DL_TIMER_CC_0_INDEX);
+        DL_TimerG_setCaptureCompareValue(Motor_INST, right, DL_TIMER_CC_0_INDEX);
     }
-    else if (left < 0)
+    else if (right < 0)
     {
         DL_GPIO_setPins(Motor_port, GPIO_LEFT2);
         DL_GPIO_clearPins(Motor_port, GPIO_LEFT1);
-        DL_TimerG_setCaptureCompareValue(Motor_INST, -left, DL_TIMER_CC_0_INDEX);
+        DL_TimerG_setCaptureCompareValue(Motor_INST, -right, DL_TIMER_CC_0_INDEX);
     }
     else
     {
@@ -34,17 +34,17 @@ void motor_speed(int left, int right)
         DL_TimerG_setCaptureCompareValue(Motor_INST, 0, DL_TIMER_CC_0_INDEX);
     }
 		
-		if (right > 0)
+		if (left > 0)
     {
         DL_GPIO_setPins(Motor_port, GPIO_RIGHT1);
         DL_GPIO_clearPins(Motor_port, GPIO_RIGHT2);
-        DL_TimerG_setCaptureCompareValue(Motor_INST, right, DL_TIMER_CC_1_INDEX);
+        DL_TimerG_setCaptureCompareValue(Motor_INST, left, DL_TIMER_CC_1_INDEX);
     }
-    else if (right < 0)
+    else if (left < 0)
     {
         DL_GPIO_setPins(Motor_port, GPIO_RIGHT2);
         DL_GPIO_clearPins(Motor_port, GPIO_RIGHT1);
-        DL_TimerG_setCaptureCompareValue(Motor_INST, -right, DL_TIMER_CC_1_INDEX);
+        DL_TimerG_setCaptureCompareValue(Motor_INST, -left, DL_TIMER_CC_1_INDEX);
     }
     else
     {

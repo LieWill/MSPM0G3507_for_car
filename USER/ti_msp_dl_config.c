@@ -154,27 +154,49 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
 		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_1_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_1_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_2_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_2_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_3_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_3_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_4_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_4_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_5_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_5_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_6_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_6_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_7_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_7_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_8_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_8_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_9_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_9_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_10_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_10_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
-    DL_GPIO_initDigitalOutput(RIF_PIN_11_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(RIF_PIN_11_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_DOWN,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
     DL_GPIO_initDigitalOutput(MOTOR_AIN1_IOMUX);
 
@@ -211,17 +233,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_enableInterrupt(QEI_PORT, QEI_EA1_PIN |
 		QEI_EB1_PIN);
     DL_GPIO_clearPins(GPIOB, buzzer_PIN_12_PIN |
-		RIF_PIN_1_PIN |
-		RIF_PIN_2_PIN |
-		RIF_PIN_3_PIN |
-		RIF_PIN_4_PIN |
-		RIF_PIN_5_PIN |
-		RIF_PIN_6_PIN |
-		RIF_PIN_7_PIN |
-		RIF_PIN_8_PIN |
-		RIF_PIN_9_PIN |
-		RIF_PIN_10_PIN |
-		RIF_PIN_11_PIN |
 		MOTOR_AIN1_PIN |
 		MOTOR_AIN2_PIN |
 		MOTOR_BIN1_PIN |
@@ -230,17 +241,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 		Button_P2_PIN |
 		Button_P3_PIN);
     DL_GPIO_enableOutput(GPIOB, buzzer_PIN_12_PIN |
-		RIF_PIN_1_PIN |
-		RIF_PIN_2_PIN |
-		RIF_PIN_3_PIN |
-		RIF_PIN_4_PIN |
-		RIF_PIN_5_PIN |
-		RIF_PIN_6_PIN |
-		RIF_PIN_7_PIN |
-		RIF_PIN_8_PIN |
-		RIF_PIN_9_PIN |
-		RIF_PIN_10_PIN |
-		RIF_PIN_11_PIN |
 		MOTOR_AIN1_PIN |
 		MOTOR_AIN2_PIN |
 		MOTOR_BIN1_PIN |
@@ -368,7 +368,7 @@ static const DL_TimerG_ClockConfig gTIMERClockConfig = {
 
 /*
  * Timer load value (where the counter starts from) is calculated as (timerPeriod * timerClockFreq) - 1
- * TIMER_INST_LOAD_VALUE = (0.05s * 4096 Hz) - 1
+ * TIMER_INST_LOAD_VALUE = (0.01s * 4096 Hz) - 1
  */
 static const DL_TimerG_TimerConfig gTIMERTimerConfig = {
     .period     = TIMER_INST_LOAD_VALUE,
@@ -468,6 +468,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_WIT_uart_init(void)
     /* Configure Interrupts */
     DL_UART_Main_enableInterrupt(WIT_uart_INST,
                                  DL_UART_MAIN_INTERRUPT_RX);
+    /* Setting the Interrupt Priority */
+    NVIC_SetPriority(WIT_uart_INST_INT_IRQN, 0);
 
     /* Configure FIFOs */
     DL_UART_Main_enableFIFOs(WIT_uart_INST);
@@ -513,8 +515,16 @@ SYSCONFIG_WEAK void SYSCFG_DL_BLUE_TOOTH_init(void)
     DL_UART_Main_enableInterrupt(BLUE_TOOTH_INST,
                                  DL_UART_MAIN_INTERRUPT_RX);
     /* Setting the Interrupt Priority */
-    NVIC_SetPriority(BLUE_TOOTH_INST_INT_IRQN, 0);
+    NVIC_SetPriority(BLUE_TOOTH_INST_INT_IRQN, 1);
 
+    /* Configure FIFOs */
+    DL_UART_Main_enableFIFOs(BLUE_TOOTH_INST);
+    DL_UART_Main_setRXFIFOThreshold(BLUE_TOOTH_INST, DL_UART_RX_FIFO_LEVEL_3_4_FULL);
+    DL_UART_Main_setTXFIFOThreshold(BLUE_TOOTH_INST, DL_UART_TX_FIFO_LEVEL_1_2_EMPTY);
+
+    /* Configure analog glitch filter */
+    DL_UART_Main_enableAnalogGlitchFilter(BLUE_TOOTH_INST);
+    DL_UART_Main_setAnalogPulseWidth(BLUE_TOOTH_INST, DL_UART_PULSE_WIDTH_50_NS);
 
     DL_UART_Main_setRXInterruptTimeout(BLUE_TOOTH_INST, 15);
 

@@ -4,8 +4,6 @@
 #include "ti_msp_dl_config.h"
 #include "REG.h"
 
-
-
 //#define USING_I2C
 
 #if defined (USING_I2C)
@@ -17,11 +15,16 @@ volatile uint16_t wit_get_roll(void);
 volatile uint16_t wit_get_pitch(void);
 #endif
 
-static inline float wit_to_float(uint16_t data) {
+inline void wit_init()
+{
+    NVIC_EnableIRQ(BLUE_TOOTH_INST_INT_IRQN);
+}
+
+inline float wit_to_float(uint16_t data) {
     return data / 32768.0f * 180.0f;
 }
 
-static inline uint16_t wit_to_uint16(float angle) {
+inline uint16_t wit_to_uint16(float angle) {
     return angle / 180.0f * 32768.0f; 
 }
 

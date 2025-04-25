@@ -5,7 +5,8 @@
 
 inline uint16_t rif_getValue()
 {
-    return RIF_PORT->DIN31_0;
+    return GPIOB->DIN31_0;
 }
+int rif_to_value(uint16_t value);
 
 #endif

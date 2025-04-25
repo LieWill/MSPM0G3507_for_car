@@ -5,7 +5,7 @@
 
 //#define SPEED_WITH_KI
 #define SPEED_WITH_feedforward				// 前馈
-//#define SPEED_WITH_Second_order_feedforward // 二阶前馈
+#define SPEED_WITH_Second_order_feedforward // 二阶前馈
 #define WIT_WITH_KD
 
 typedef struct
@@ -33,10 +33,11 @@ typedef struct
 
 typedef struct
 {
-	uint16_t real;
-	uint16_t target;
-	uint16_t out;
-	uint16_t last_error;
+	float real;
+	float last_real;
+	float target;
+	float out;
+	float last_error;
 	float kp;
 	float kd;
 } pid_rif;
@@ -61,6 +62,7 @@ typedef struct
 	float kd;
 #endif
 	float kp;
+	float ki;
 } pid_wit;
 
 void pid_run_speed(pid_speed *input);

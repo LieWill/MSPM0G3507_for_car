@@ -79,15 +79,15 @@ volatile uint16_t wit_get_pitch(void)
 	return angle.pitch;
 }
 
-void WIT_uart_INST_IRQHandler()
+void BLUE_TOOTH_INST_IRQHandler()
 {
 	static uint8_t temp;
-	switch (DL_UART_Main_getPendingInterrupt(WIT_uart_INST))
+	switch (DL_UART_Main_getPendingInterrupt(BLUE_TOOTH_INST))
 	{
 	case DL_UART_IIDX_RX:
 		do
 		{
-			temp = DL_UART_receiveData(WIT_uart_INST);
+			temp = DL_UART_receiveData(BLUE_TOOTH_INST);
 			switch (Wit_rx.status)
 			{
 			case stop:
@@ -117,7 +117,7 @@ void WIT_uart_INST_IRQHandler()
 					Wit_rx.buff.c[Wit_rx.size++] = temp;
 				break;
 			}
-		} while (!DL_UART_isRXFIFOEmpty(WIT_uart_INST));
+		} while (!DL_UART_isRXFIFOEmpty(BLUE_TOOTH_INST));
 		break;
 	default:
 		break;
