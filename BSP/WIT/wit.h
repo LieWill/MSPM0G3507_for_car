@@ -20,11 +20,11 @@ inline void wit_init()
     NVIC_EnableIRQ(BLUE_TOOTH_INST_INT_IRQN);
 }
 
-inline float wit_to_float(uint16_t data) {
+inline float wit_to_float(int16_t data) {
     return data / 32768.0f * 180.0f;
 }
 
-inline uint16_t wit_to_uint16(float angle) {
+inline uint16_t wit_to_int16(float angle) {
     return angle / 180.0f * 32768.0f; 
 }
 

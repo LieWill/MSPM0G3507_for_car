@@ -2,13 +2,14 @@
 #define __TASK_H__
 
 typedef enum {
-    QUESTION_1,
-    QUESTION_2,
-    QUESTION_3,
-    QUESTION_4,
-    NO_QUESTION
+		NO_QUESTION = 0,
+    QUESTION_1 = 1,
+    QUESTION_2 = 2,
+    QUESTION_3 = 3,
+    QUESTION_4 = 4,
+    
 } task;
 
-void use_task(task select);
+void use_task(task *select);
 
 #endif // !__TASK_H__

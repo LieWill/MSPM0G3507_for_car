@@ -50,19 +50,22 @@ typedef struct
 	float kd;
 	float last_error;
 	float out;
+	float limit;
 }pid_distance;
 
 typedef struct
 {
-	uint16_t real;
-	uint16_t target;
-	uint16_t out;
+	int16_t real;
+	int16_t target;
+	float out;
+	int16_t last_real;
 #if defined(WIT_WITH_KD)
-	uint16_t last_error;
+	int16_t last_error;
 	float kd;
 #endif
 	float kp;
 	float ki;
+	float accumulate;
 } pid_wit;
 
 void pid_run_speed(pid_speed *input);

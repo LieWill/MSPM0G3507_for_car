@@ -18,10 +18,6 @@ void pid_run_speed(pid_speed *input)
     input->out += (input->target - input->last_target) * input->kf;
     input->last_target = input->target;
 #endif
-//	if(input->out > 1000)
-//		input->out = 1000;
-//	else if(input->out < -1000)
-//		input->out = -1000;
     input->last_error = error;
 		input->last_real = input->real;
 }
@@ -39,14 +35,35 @@ void pid_run_distance(pid_distance *input)
 {
     float error = input->target - input->real;
     input->out = error * input->kp + (error - input->last_error) * input->kd;
+		if(input->out > input->limit)
+			input->out = input->limit;
+		else if(input->out < -input->limit)
+			input->out = -input->limit;
     input->last_error = error;
 }
 
 void pid_run_wit(pid_wit *input)
 {
-    int error = input->target - input->real;
+    int16_t error = (input->target - input->real);
+		error = error * 0.3 + input->last_error * 0.7;
+		if(error > 100 || error < -100)
+			input->accumulate += error * input->ki;
+		if(input->accumulate > 0 && error > 0)
+			input->accumulate = 0;
+		else if(input->accumulate < 0 && error < 0)
+			input->accumulate = 0;
+		if(input->accumulate > 20)
+			input->accumulate = 20;
+		else if(input->accumulate < -20)
+			input->accumulate = -20;
+		error /= 400;
 #if defined(WIT_WITH_KD)
-    input->out = error * input->kp + (error - input->last_error) * input->kd;
+    input->out = error * input->kp + (error - input->last_error) * input->kd + input->accumulate * 0.1;
+    input->last_error = error;
+		if(input->out > 20) 
+			input->out = 20;
+		else if(input->out < -20)
+			input->out = -20;
 #else
     input->out = error * input->kp;
 #endif

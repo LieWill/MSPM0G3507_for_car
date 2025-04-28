@@ -7,7 +7,11 @@
     "settings": {
         "files.associations": {
             "ti_msp_dl_config.h": "c",
-            "type_traits": "c"
+            "type_traits": "c",
+            "bit": "c",
+            "compare": "c",
+            "limits": "c",
+            "new": "c"
         }
     },
     "extensions": {}
