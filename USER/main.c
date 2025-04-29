@@ -10,6 +10,14 @@
 #include "flash.h"
 #include "task.h"
 
+extern enum
+{
+	INS,	  // 惯性导航
+	TARCKING, // 循迹
+	STOP,	  // 停
+} status;
+
+extern float set_speed;
 
 int main(void)
 {
@@ -25,7 +33,9 @@ int main(void)
 	OLED_ShowString(1, 1, "Question");
 	task T = NO_QUESTION;
 	task select = NO_QUESTION;
-	
+//	set_speed = 34;
+//	status = TARCKING;
+
 	while (1)
 	{
 		if (!DL_GPIO_readPins(Button_PORT, Button_P1_PIN))
@@ -47,7 +57,7 @@ int main(void)
 			{
 				while (!DL_GPIO_readPins(Button_PORT, Button_P2_PIN))
 					;
-				if(select >= QUESTION_4)
+				if (select >= QUESTION_4)
 					select = QUESTION_1;
 				else
 					select++;

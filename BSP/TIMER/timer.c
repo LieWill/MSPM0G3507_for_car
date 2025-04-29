@@ -1,8 +1,8 @@
 #include "timer.h"
 #include "qei.h"
 #include "wit.h"
+#include "vofa.h"
 
-#define VOFA
 struct
 {
 	pid_speed left;
@@ -12,7 +12,7 @@ struct
 		   .right = {.kp = 2.4, .kd = 21, .kf = 3, .kf2 = 5, .out = 0, .real = 0, .last_real = 0, .last_target = 0, .last_target2 = 0, .target = 0},
 		   .target = &speed.left};
 float set_speed = 0;
-pid_rif rif = {.out = 0, .kp = 2.4, .kd = 8, .last_error = 0, .target = 2};
+pid_rif rif = {.out = 0, .kp = 2.4, .kd = 9.5, .last_error = 0, .target = 2};
 pid_distance distance = {.kd = 0, .kp = 0.05, .last_error = 0, .real = 0, .out = 0, .target = 0, .last_error = 0};
 pid_wit angle = {.kd = -1.6, .kp = -1.1, .last_error = 0, .last_real = 0, .ki = -0.001};
 bool isBlack = false;
@@ -24,13 +24,10 @@ extern enum {
 	DISTANCE
 } cmd;
 
-extern enum
-{
-	BEGIN,	  // 开始
-	STRAIGHT, // 直走
-	TURN,	    // 转
+extern enum {
+	INS,	  // 惯性导航
 	TARCKING, // 循迹
-	END,	    // 停
+	STOP,	  // 停
 } status;
 
 extern vofa bluetooth;
@@ -57,32 +54,26 @@ void TIMER_INST_IRQHandler(void)
 		isBlack = false;
 		rif.real = 0;
 	}
-	if (status == TURN)
+	if (status == INS)
 	{
-		angle.real = ((union{
-			int16_t i;
-			uint16_t u;
-		})wit_get_yaw()).i;
+		angle.real = ((union {
+						 int16_t i;
+						 uint16_t u;
+					 })wit_get_yaw())
+						 .i;
 		pid_run_wit(&angle);
 		distance.real += speed.left.real + speed.right.real;
 		pid_run_distance(&distance);
 		speed.left.target = distance.out - angle.out;
 		speed.right.target = distance.out + angle.out;
 	}
-	else if(status == STRAIGHT)
-	{
-		distance.real += speed.left.real + speed.right.real;
-		pid_run_distance(&distance);
-		speed.left.target = distance.out;
-		speed.right.target = distance.out;
-	}
-	else if(status == TARCKING)
+	else if (status == TARCKING)
 	{
 		pid_run_rif(&rif);
 		speed.left.target = set_speed + rif.out;
 		speed.right.target = set_speed - rif.out;
 	}
-	else if(status == END || status == BEGIN)
+	else if (status == STOP)
 	{
 		speed.left.target = 0;
 		speed.right.target = 0;

@@ -25,3 +25,4 @@ keil/.vscode/keil-assistant.log
 keil/.vscode/settings.json
 keil/.vscode/tasks.json
 .gitignore
+keil/EventRecorderStub.scvd

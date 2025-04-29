@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-//#define SPEED_WITH_KI
+// #define SPEED_WITH_KI
 #define SPEED_WITH_feedforward				// 前馈
 #define SPEED_WITH_Second_order_feedforward // 二阶前馈
 #define WIT_WITH_KD
@@ -16,7 +16,7 @@ typedef struct
 #if defined(SPEED_WITH_feedforward)
 	float last_target;
 	float kf;
-#if defined (SPEED_WITH_Second_order_feedforward)
+#if defined(SPEED_WITH_Second_order_feedforward)
 	float last_target2;
 	float kf2;
 #endif
@@ -51,7 +51,7 @@ typedef struct
 	float last_error;
 	float out;
 	float limit;
-}pid_distance;
+} pid_distance;
 
 typedef struct
 {
