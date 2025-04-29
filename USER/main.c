@@ -57,7 +57,7 @@ int main(void)
 			{
 				while (!DL_GPIO_readPins(Button_PORT, Button_P2_PIN))
 					;
-				if (select >= QUESTION_4)
+				if (select >= QUESTION_5)
 					select = QUESTION_1;
 				else
 					select++;

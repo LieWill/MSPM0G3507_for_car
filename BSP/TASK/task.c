@@ -5,12 +5,12 @@
 #include "wit.h"
 #include "OLED.h"
 
-#define STRAGHT_DISTANCE 3100 // 直走距离
+#define STRAGHT_DISTANCE 3300 // 直走距离
 #define TURN_DISTANCE 3950	  // 大拐弯距离
-#define SHORT_DISTANCE 1300	  // 小拐弯距离
+#define SHORT_DISTANCE 2400	  // 小拐弯距离
 
-#define FIRST_TURN 53 // 第一次旋转的角度
-#define SECOND_TURN 77 // 第二次及以后旋转的角度
+#define FIRST_TURN 44.5  // 第一次旋转的角度
+#define SECOND_TURN 74 // 第二次及以后旋转的角度
 
 enum
 {
@@ -25,6 +25,7 @@ static struct
 	uint8_t _2;
 	uint8_t _3;
 	uint8_t _4;
+	uint8_t _5;
 } question_status = {0};
 
 static uint8_t tu = 0;
@@ -38,6 +39,8 @@ extern pid_distance distance;
 extern pid_rif rif;
 
 extern bool isBlack;
+
+volatile uint8_t Bee = 0;
 
 void start_straight()
 {
@@ -87,11 +90,27 @@ void go_short(float Angle, int length) // 小拐弯
 
 void start_tarcking() // 开始循迹
 {
+	set_speed = 8;
+	delay_cycles(1000000);
 	set_speed = 15;
-	delay_cycles(4000000);
+	delay_cycles(2000000);
 	set_speed = 24;
-	delay_cycles(4000000);
+	delay_cycles(3000000);
 	set_speed = 30;
+	delay_cycles(2000000);
+	set_speed = 33;
+	status = TARCKING;
+}
+
+void start_tarcking_slow() // 开始循迹
+{
+	set_speed = 8;
+	delay_cycles(1000000);
+	set_speed = 15;
+	delay_cycles(2000000);
+	set_speed = 24;
+	delay_cycles(3000000);
+	set_speed = 28;
 	status = TARCKING;
 }
 
@@ -105,6 +124,7 @@ void use_task(task *select)
 		{
 		case 0: // 起步
 			delay_cycles(10000000);
+			Bee = 10;
 			start_straight();
 			question_status._1 = 1;
 			break;
@@ -112,6 +132,7 @@ void use_task(task *select)
 			if (distance.real > distance.target - 100)
 			{
 				status = STOP;
+				 Bee = 10;
 				question_status._1 = 0;
 				*select = NO_QUESTION;
 			}
@@ -123,14 +144,16 @@ void use_task(task *select)
 		{
 		case 0: // 起步
 			delay_cycles(10000000);
+			Bee = 10;
 			start_straight();
 			question_status._2 = 1;
 			break;
 		case 1:																										 // 惯导
-			if (distance.real > distance.target - 100 || (isBlack == true && distance.real > distance.target - 300)) // 判断惯导退出
+			if (distance.real > distance.target - 100 || (isBlack == true && distance.real > distance.target - 500)) // 判断惯导退出
 			{
+				Bee = 10;
 				rif.target = 2;
-				start_tarcking();
+				start_tarcking_slow();
 				question_status._2 = 2;
 			}
 			break;
@@ -140,6 +163,7 @@ void use_task(task *select)
 				delay_cycles(10000);
 				if (isBlack == true)
 					return;
+				Bee = 10;
 				if (counter == 1) // 退出题目
 				{
 					status = STOP;
@@ -154,7 +178,7 @@ void use_task(task *select)
 				}
 				if (status == STOP)
 				{
-					go_straight(185, STRAGHT_DISTANCE);
+					go_straight(180, STRAGHT_DISTANCE);
 					question_status._2 = 1; // 切换循迹
 				}
 				counter++;
@@ -167,6 +191,7 @@ void use_task(task *select)
 		{
 		case 0: // 起步
 			delay_cycles(10000000);
+			Bee = 10;
 			angle.target = wit_get_yaw(); // 角度矫正
 			go_straight(FIRST_TURN, TURN_DISTANCE);
 			question_status._3 = 1;
@@ -176,6 +201,7 @@ void use_task(task *select)
 			{
 				if (isBlack == true) // 遇到黑线
 				{
+					Bee = 10;
 					rif.target = -rif.target;
 					start_tarcking();
 					question_status._3 = 3;
@@ -184,13 +210,13 @@ void use_task(task *select)
 				else if (!tu)
 				{
 					tu = ~tu;
-					go_short(-FIRST_TURN, SHORT_DISTANCE);
+					go_short(-FIRST_TURN - 1.5, SHORT_DISTANCE);
 					question_status._3 = 2;
 				}
 				else
 				{
 					tu = ~tu;
-					go_short(SECOND_TURN, SHORT_DISTANCE + 450);
+					go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
 					question_status._3 = 2;
 				}
 			}
@@ -198,6 +224,7 @@ void use_task(task *select)
 		case 2: // 惯导 (直走)
 			if (isBlack == true)
 			{
+				Bee = 10;
 				rif.target = -rif.target;
 				start_tarcking();
 				question_status._3 = 3;
@@ -206,9 +233,10 @@ void use_task(task *select)
 		case 3: // 循迹
 			if (isBlack == false)
 			{
-				delay_cycles(10000);
+				delay_cycles(100);
 				if (isBlack == true)
 					return;
+				Bee = 10;
 				if (counter == 1)
 				{
 					status = STOP;
@@ -237,15 +265,17 @@ void use_task(task *select)
 		{
 		case 0: // 起步
 			delay_cycles(10000000);
+			Bee = 10;
 			angle.target = wit_get_yaw(); // 角度矫正
 			go_straight(FIRST_TURN, TURN_DISTANCE);
 			question_status._4 = 1;
 			break;
 		case 1:										   // 惯导 (斜走)
-			if (distance.real > distance.target - 300) // 判断惯导
+			if (distance.real > distance.target - 800) // 判断惯导
 			{
 				if (isBlack == true) // 遇到黑线
 				{
+					Bee = 10;
 					rif.target = -rif.target;
 					start_tarcking();
 					question_status._4 = 3;
@@ -254,19 +284,19 @@ void use_task(task *select)
 				else if (!tu)
 				{
 					tu++;
-					go_short(-FIRST_TURN, SHORT_DISTANCE);
+					go_short(-FIRST_TURN - 1.5, SHORT_DISTANCE);
 					question_status._4 = 2;
 				}
 				else
 				{
 					if (tu % 2 == 1)
 					{
-						go_short(SECOND_TURN + 1, SHORT_DISTANCE + 450);
+						go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
 						question_status._4 = 2;
 					}
 					else
 					{
-						go_short(-SECOND_TURN - 1, SHORT_DISTANCE + 450);
+						go_short(-SECOND_TURN - 2, SHORT_DISTANCE + 450);
 						question_status._4 = 2;
 					}
 					tu++;
@@ -276,6 +306,7 @@ void use_task(task *select)
 		case 2: // 惯导 (直走)
 			if (isBlack == true)
 			{
+				Bee = 10;
 				rif.target = -rif.target;
 				start_tarcking();
 				question_status._4 = 3;
@@ -284,27 +315,111 @@ void use_task(task *select)
 		case 3: // 循迹
 			if (isBlack == false)
 			{
-				delay_cycles(10000);
+				delay_cycles(100);
 				if (isBlack == true)
 					return;
+				Bee = 10;
 				status = STOP;
 				delay_cycles(500000);
-				if (status == STOP)
+				if(tu > 7)
+				{
+					status = STOP;
+					question_status._4 = 0;
+					*select = NO_QUESTION;
+					return;
+				}
+				if (tu % 2 == 1)
+				{
+					angle.target = wit_get_yaw();
+					go_straight(-SECOND_TURN, TURN_DISTANCE);
+					question_status._4 = 1;
+				}
+				else
+				{
+					angle.target = wit_get_yaw();
+					go_straight(SECOND_TURN, TURN_DISTANCE);
+					question_status._4 = 1;
+				}
+				counter++;
+			}
+			break;
+		}
+		break;
+		case QUESTION_5:
+		switch (question_status._5)
+		{
+		case 0: // 起步
+			delay_cycles(10000000);
+			Bee = 10;
+			angle.target = wit_get_yaw(); // 角度矫正
+			go_straight(FIRST_TURN, TURN_DISTANCE);
+			question_status._5 = 1;
+			break;
+		case 1:										   // 惯导 (斜走)
+			if (distance.real > distance.target - 800) // 判断惯导
+			{
+				if (isBlack == true) // 遇到黑线
+				{
+					Bee = 10;
+					rif.target = -rif.target;
+					start_tarcking();
+					question_status._5 = 3;
+					tu++;
+				}
+				else if (!tu)
+				{
+					tu++;
+					go_short(-FIRST_TURN - 1.5, SHORT_DISTANCE);
+					question_status._5 = 2;
+				}
+				else
 				{
 					if (tu % 2 == 1)
 					{
-						angle.target = wit_get_yaw();
-						go_straight(-SECOND_TURN, TURN_DISTANCE);
-						question_status._4 = 1;
+						go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
+						question_status._5 = 2;
 					}
 					else
 					{
-						angle.target = wit_get_yaw();
-						go_straight(SECOND_TURN, TURN_DISTANCE);
-						question_status._4 = 1;
+						go_short(-SECOND_TURN - 2, SHORT_DISTANCE + 450);
+						question_status._5 = 2;
 					}
+					tu++;
+				}
+			}
+			break;
+		case 2: // 惯导 (直走)
+			if (isBlack == true)
+			{
+				Bee = 10;
+				rif.target = -rif.target;
+				start_tarcking();
+				question_status._5 = 3;
+			}
+			break;
+		case 3: // 循迹
+			if (isBlack == false)
+			{
+				delay_cycles(100);
+				if (isBlack == true)
+					return;
+				Bee = 10;
+				status = STOP;
+				delay_cycles(500000);
+				if (tu % 2 == 1)
+				{
+					angle.target = wit_get_yaw();
+					go_straight(-SECOND_TURN, TURN_DISTANCE);
+					question_status._5 = 1;
+				}
+				else
+				{
+					angle.target = wit_get_yaw();
+					go_straight(SECOND_TURN, TURN_DISTANCE);
+					question_status._5 = 1;
 				}
 				counter++;
+				break;
 			}
 			break;
 		}

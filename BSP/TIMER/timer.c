@@ -17,6 +17,8 @@ pid_distance distance = {.kd = 0, .kp = 0.05, .last_error = 0, .real = 0, .out =
 pid_wit angle = {.kd = -1.6, .kp = -1.1, .last_error = 0, .last_real = 0, .ki = -0.001};
 bool isBlack = false;
 
+extern volatile uint8_t Bee;
+
 extern enum {
 	SPEED,
 	RIF,
@@ -106,6 +108,13 @@ void TIMER_INST_IRQHandler(void)
 	}
 	vofa_transmitfloat(&bluetooth);
 #endif
+	if(Bee)
+	{
+		Bee--;
+		DL_GPIO_setPins(buzzer_PORT, buzzer_PIN_12_PIN);
+	}
+	else
+		DL_GPIO_clearPins(buzzer_PORT, buzzer_PIN_12_PIN);
 #if defined(CPU_USAGE)
 	cpu_counter = TIMER_INST->COUNTERREGS.CTR;
 #endif
