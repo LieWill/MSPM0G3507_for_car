@@ -5,12 +5,12 @@
 #include "wit.h"
 #include "OLED.h"
 
-#define STRAGHT_DISTANCE 3300 // 直走距离
+#define STRAGHT_DISTANCE 3950 // 直走距离
 #define TURN_DISTANCE 3950	  // 大拐弯距离
 #define SHORT_DISTANCE 2400	  // 小拐弯距离
 
-#define FIRST_TURN 44.5  // 第一次旋转的角度
-#define SECOND_TURN 74 // 第二次及以后旋转的角度
+#define FIRST_TURN 44.9   // 第一次旋转的角度
+#define SECOND_TURN 74.0 // 第二次及以后旋转的角度
 
 enum
 {
@@ -57,7 +57,7 @@ void start_straight()
 	delay_cycles(8000000);
 	distance.limit = 25;
 	delay_cycles(8000000);
-	distance.limit = 30;
+	distance.limit = 33;
 }
 
 void go_straight(float Angle, int length) // 变换角度行走
@@ -75,7 +75,21 @@ void go_straight(float Angle, int length) // 变换角度行走
 	delay_cycles(1000000);
 	distance.limit = 36;
 	delay_cycles(200000);
-	distance.limit = 40;
+	distance.limit = 45;
+}
+
+void go_straight_slow(float Angle, int length) // 变换角度行走
+{
+	distance.target = length + distance.real;
+	angle.target += wit_to_int16(Angle);
+	status = INS;
+	distance.limit = 8;    // 阶梯加速防止翘头
+	delay_cycles(4000000);
+	distance.limit = 14;
+	delay_cycles(1000000);
+	distance.limit = 21;
+	delay_cycles(1000000);
+	distance.limit = 28;
 }
 
 void go_short(float Angle, int length) // 小拐弯
@@ -85,7 +99,7 @@ void go_short(float Angle, int length) // 小拐弯
 	status = INS;
 	distance.limit = 10;
 	delay_cycles(2000000);
-	distance.limit = 20;
+	distance.limit = 22;
 }
 
 void start_tarcking() // 开始循迹
@@ -98,7 +112,7 @@ void start_tarcking() // 开始循迹
 	delay_cycles(3000000);
 	set_speed = 30;
 	delay_cycles(2000000);
-	set_speed = 33;
+	set_speed = 34;
 	status = TARCKING;
 }
 
@@ -129,7 +143,7 @@ void use_task(task *select)
 			question_status._1 = 1;
 			break;
 		case 1: // 判断停下
-			if (distance.real > distance.target - 100)
+			if (distance.real > distance.target - 1200)
 			{
 				status = STOP;
 				 Bee = 10;
@@ -149,7 +163,7 @@ void use_task(task *select)
 			question_status._2 = 1;
 			break;
 		case 1:																										 // 惯导
-			if (distance.real > distance.target - 100 || (isBlack == true && distance.real > distance.target - 500)) // 判断惯导退出
+			if (distance.real > distance.target - 100 || (isBlack == true && distance.real > distance.target - 1300)) // 判断惯导退出
 			{
 				Bee = 10;
 				rif.target = 2;
@@ -178,7 +192,7 @@ void use_task(task *select)
 				}
 				if (status == STOP)
 				{
-					go_straight(180, STRAGHT_DISTANCE);
+					go_straight_slow(180, STRAGHT_DISTANCE);
 					question_status._2 = 1; // 切换循迹
 				}
 				counter++;
@@ -193,7 +207,7 @@ void use_task(task *select)
 			delay_cycles(10000000);
 			Bee = 10;
 			angle.target = wit_get_yaw(); // 角度矫正
-			go_straight(FIRST_TURN, TURN_DISTANCE);
+			go_straight(FIRST_TURN, TURN_DISTANCE - 100);
 			question_status._3 = 1;
 			break;
 		case 1:										   // 惯导 (斜走)
@@ -216,7 +230,7 @@ void use_task(task *select)
 				else
 				{
 					tu = ~tu;
-					go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
+					go_short(SECOND_TURN + 1, SHORT_DISTANCE + 450);
 					question_status._3 = 2;
 				}
 			}
@@ -267,7 +281,7 @@ void use_task(task *select)
 			delay_cycles(10000000);
 			Bee = 10;
 			angle.target = wit_get_yaw(); // 角度矫正
-			go_straight(FIRST_TURN, TURN_DISTANCE);
+			go_straight(FIRST_TURN, TURN_DISTANCE - 100);
 			question_status._4 = 1;
 			break;
 		case 1:										   // 惯导 (斜走)
@@ -284,19 +298,19 @@ void use_task(task *select)
 				else if (!tu)
 				{
 					tu++;
-					go_short(-FIRST_TURN - 1.5, SHORT_DISTANCE);
+					go_short(-FIRST_TURN - 1, SHORT_DISTANCE);
 					question_status._4 = 2;
 				}
 				else
 				{
 					if (tu % 2 == 1)
 					{
-						go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
+						go_short(SECOND_TURN + 1, SHORT_DISTANCE + 450);
 						question_status._4 = 2;
 					}
 					else
 					{
-						go_short(-SECOND_TURN - 2, SHORT_DISTANCE + 450);
+						go_short(-SECOND_TURN, SHORT_DISTANCE + 450);
 						question_status._4 = 2;
 					}
 					tu++;
@@ -352,7 +366,7 @@ void use_task(task *select)
 			delay_cycles(10000000);
 			Bee = 10;
 			angle.target = wit_get_yaw(); // 角度矫正
-			go_straight(FIRST_TURN, TURN_DISTANCE);
+			go_straight(FIRST_TURN, TURN_DISTANCE - 100);
 			question_status._5 = 1;
 			break;
 		case 1:										   // 惯导 (斜走)
@@ -376,12 +390,12 @@ void use_task(task *select)
 				{
 					if (tu % 2 == 1)
 					{
-						go_short(SECOND_TURN + 2, SHORT_DISTANCE + 450);
+						go_short(SECOND_TURN + 1, SHORT_DISTANCE + 450);
 						question_status._5 = 2;
 					}
 					else
 					{
-						go_short(-SECOND_TURN - 2, SHORT_DISTANCE + 450);
+						go_short(-SECOND_TURN - 1, SHORT_DISTANCE + 450);
 						question_status._5 = 2;
 					}
 					tu++;
