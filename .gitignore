@@ -27,3 +27,4 @@ keil/.vscode/tasks.json
 .gitignore
 keil/EventRecorderStub.scvd
 keil/empty_LP_MSPM0G3507_nortos_keil.uvguix.廖唯一
+keil/template.map
