@@ -6,7 +6,7 @@
 #include "ti_msp_dl_config.h"
 
 #define VOFA_TX_VALUE_MAX 10
-#define VOFA 不定义就是不使用VOFA
+#define VOFA //不定义就是不使用VOFA
 
 typedef struct
 {
