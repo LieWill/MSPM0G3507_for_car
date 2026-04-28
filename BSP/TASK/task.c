@@ -1,3 +1,7 @@
+/*
+ * 任务调度模块源文件
+ * 实现各个题目的业务逻辑，包括直行、拐弯、循迹与惯导的切换。
+ */
 #include "task.h"
 #include "pid.h"
 #include "ti_msp_dl_config.h"
@@ -44,10 +48,11 @@ volatile uint8_t Bee = 0;
 
 void start_straight()
 {
+	// 设定初始直行距离，以当前 Yaw 偏航角作为基准目标角度
 	distance.target = STRAGHT_DISTANCE + distance.real;
 	angle.target = wit_get_yaw();
-	status = INS;
-	distance.limit = 5;
+	status = INS; // 切换至惯导模式
+	// 采用阶梯加速，分步提高限幅，防止起步过猛导致车体翘头影响传感器
 	delay_cycles(8000000);
 	distance.limit = 10;
 	delay_cycles(8000000);
@@ -62,10 +67,11 @@ void start_straight()
 
 void go_straight(float Angle, int length) // 变换角度行走
 {
+	// 在当前里程上累加目标距离，在当前目标角度上累加旋转角度
 	distance.target = length + distance.real;
 	angle.target += wit_to_int16(Angle);
-	status = INS;
-	distance.limit = 8;    // 阶梯加速防止翘头
+	status = INS; // 切换至惯导模式
+	// 阶梯加速防止翘头
 	delay_cycles(4000000);
 	distance.limit = 14;
 	delay_cycles(1000000);
@@ -104,6 +110,7 @@ void go_short(float Angle, int length) // 小拐弯
 
 void start_tarcking() // 开始循迹
 {
+	// 阶梯式加速，逐步提高基础设定速度，避免轮胎打滑
 	set_speed = 8;
 	delay_cycles(1000000);
 	set_speed = 15;

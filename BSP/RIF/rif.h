@@ -1,3 +1,7 @@
+/*
+ * RIF (Reflectance Infrared Sensor) 模块头文件
+ * 用于读取红外灰度传感器阵列，实现黑线循迹。
+ */
 #ifndef __RIF_H__
 #define __RIF_H__
 

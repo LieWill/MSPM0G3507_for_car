@@ -1,3 +1,7 @@
+/*
+ * RIF (Reflectance Infrared Sensor) 模块源文件
+ * 实现灰度传感器数据的处理和特征提取（计算黑线位置）。
+ */
 #include "rif.h"
 
 int rif_to_value(uint16_t value)

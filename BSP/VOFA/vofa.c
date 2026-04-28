@@ -1,3 +1,7 @@
+/*
+ * VOFA+ 上位机通信模块源文件
+ * 实现串口数据发送帧封装（JustFloat 协议）与调参字符串解析（动态修改 PID 参数等）。
+ */
 #include "vofa.h"
 #include <ti_msp_dl_config.h>
 #include "pid.h"
@@ -41,6 +45,7 @@ struct
 
 vofa bluetooth = {0};
 
+// 使用 VOFA+ 的 JustFloat 协议发送打包好的浮点数据队列 (尾部追加帧尾)
 void vofa_transmitfloat(vofa *temp)
 {
 	for (uint8_t i = 0; i < temp->tx_num; i++)
@@ -53,6 +58,7 @@ void vofa_transmitfloat(vofa *temp)
 	temp->tx_num = 0;
 }
 
+// 将需要上传并在上位机绘制波形的数据压入发送队列
 bool vofa_add_value(vofa *temp, float value)
 {
 	if (temp->tx_num <= VOFA_TX_VALUE_MAX)
@@ -64,6 +70,7 @@ bool vofa_add_value(vofa *temp, float value)
 		return false;
 }
 
+// 解析来自 VOFA+ 上位机的字符串调参指令
 void vofa_receive()
 {
 	if (rx.complete == true)
@@ -71,7 +78,7 @@ void vofa_receive()
 		float angle_temp = 0;
 		switch (rx.RxBuff[0])
 		{
-		case 'S':
+		case 'S': // 速度相关指令 (Speed)，例如 SLPxxx 表示左轮 kp
 			switch (rx.RxBuff[1])
 			{
 			case 'T':
@@ -134,7 +141,7 @@ void vofa_receive()
 				break;
 			}
 			break;
-		case 'R':
+		case 'R': // 灰度循迹相关指令 (RIF)
 			switch (rx.RxBuff[1])
 			{
 			case 'P':
@@ -145,7 +152,7 @@ void vofa_receive()
 				break;
 			}
 			break;
-		case 'A':
+		case 'A': // 角度/姿态相关指令 (Angle)
 			switch (rx.RxBuff[1])
 			{
 			case 'P':
@@ -162,7 +169,7 @@ void vofa_receive()
 				break;
 			}
 			break;
-		case 'D':
+		case 'D': // 距离/里程相关指令 (Distance)
 			switch (rx.RxBuff[1])
 			{
 			case 'P':
@@ -176,7 +183,7 @@ void vofa_receive()
 				break;
 			}
 			break;
-		case 'T':
+		case 'T': // 状态机/显示模式切换指令 (Toggle)
 			switch (rx.RxBuff[1])
 			{
 			case 'S':
@@ -211,6 +218,7 @@ void vofa_receive()
 	}
 }
 
+// 串口接收中断，用于逐字节接收上位机发来的以换行符 '\n' 结尾的调参命令
 void WIT_uart_INST_IRQHandler(void)
 {
 

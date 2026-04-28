@@ -1,3 +1,7 @@
+/*
+ * 定时器模块头文件
+ * 包含系统定时器初始化及 CPU 占用率计算接口。
+ */
 #ifndef __TIMER_H__
 #define __TIMER_H__
 

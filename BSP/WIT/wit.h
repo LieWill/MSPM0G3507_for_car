@@ -1,3 +1,7 @@
+/*
+ * 维特智能 (WIT) 姿态传感器模块头文件
+ * 提供获取偏航角(Yaw)、横滚角(Roll)、俯仰角(Pitch)以及数据转换接口。
+ */
 #ifndef __WIT_H__
 #define __WIT_H__
 
